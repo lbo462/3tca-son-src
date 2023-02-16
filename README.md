@@ -1,4 +1,4 @@
-# 3TCA Projet SON
+# 3TCA Projet SON : Sources
 
 Léo BONNAIRE, Léonard PRINCE, Gausse DONGMO
 
