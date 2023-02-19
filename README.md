@@ -30,3 +30,7 @@ git clone git@github.com:leoNord462/3tca-son-src.git
 ```
 
 With above configuration, you should be able to read and write in this repo.
+
+## Electrical circuit
+
+Current circuit implies two simple buttons linked to D0 and D1 (using two pullup resistances).

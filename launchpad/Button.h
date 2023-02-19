@@ -3,23 +3,22 @@
 
 #include <Audio.h>
 
-#define FILENAME_MAX_SIZE 255
-
 class Button
 {
 public:
     Button();
 
-    int pressed;           // Button pressed ? true / false
+    int pressed;           // Button pressed boolean
     int pin;               // Arduino pin
-    AudioPlaySdWav player; // got public for patchCord linking only
+    AudioPlaySdWav player; // is public for patchCord linking only. wav files player
 
     void configure(char *filename_, int pin_); // configure filename and pin
 
-    /* The update method test if the button is pressed and play the song in that case */
+    /* This test if the button is pressed and play the song in that case */
     void update();
 
 private:
+    /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
     char *filename;
 
     /* This method should only be called by update() */

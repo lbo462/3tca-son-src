@@ -16,8 +16,9 @@
 AudioControlSGTL5000 audioShield;
 AudioOutputI2S out;
 
-// Buttons
 Button buttons[NUMBER_OF_BUTTONS];
+
+/**** TODO find a way to nicely implement these connections ****/
 
 // Mixers to mix differents audio sources
 AudioMixer4 mixer1, mixer2;
@@ -31,6 +32,8 @@ AudioConnection patchCord4(buttons[1].player, 1, mixer2, 1);
 // Connect mixers to output
 AudioConnection patchCord5(mixer1, 0, out, 0);
 AudioConnection patchCord6(mixer2, 0, out, 1);
+
+/***************************************************************/
 
 void setup()
 {
@@ -54,11 +57,11 @@ void setup()
     }
   }
 
-  // define buttons
+  // configure buttons with filenames and pins
   buttons[0].configure("MESSAGE.WAV", 0);
   buttons[1].configure("MESSAGE.WAV", 1);
 
-  // PinModes
+  // configure pin modes
   for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
   {
     pinMode(buttons[i].pin, INPUT_PULLUP);
@@ -78,7 +81,7 @@ void loop()
       buttons[i].pressed = 0;
   }
 
-  // uodate buttons
+  // Update buttons
   for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
   {
     buttons[i].update();
