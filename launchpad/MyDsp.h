@@ -18,11 +18,9 @@ class MyDsp : public AudioStream
     void resonlp(float fc, float Q, float gain);
     void resonbp(float fc, float Q, float gain);
 
-    // made public for debug purpose
-    BiquadFilter biquadFilter;
-
   private:
     Noise noise;
+    BiquadFilter biquadFilter;
     
 };
 
