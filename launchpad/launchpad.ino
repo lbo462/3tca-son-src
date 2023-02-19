@@ -4,25 +4,38 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
+#include "Button.h"
+
+#define NUMBER_OF_BUTTONS 2
+
 // SD Card reading
-#define SDCARD_CS_PIN    10
-#define SDCARD_MOSI_PIN  11  // not actually used
-#define SDCARD_SCK_PIN   13  // not actually used
+#define SDCARD_CS_PIN 10
+#define SDCARD_MOSI_PIN 11 // not actually used
+#define SDCARD_SCK_PIN 13  // not actually used
 
-AudioControlSGTL5000     audioShield;
-AudioPlaySdWav           playWavMusic, playWavMessage;
-AudioMixer4              mixer1,mixer2;
-AudioOutputI2S           out;
-AudioConnection          patchCord1(playWavMusic, 0, mixer1, 0);
-AudioConnection          patchCord2(playWavMusic, 1, mixer2, 0);
-AudioConnection          patchCord3(playWavMessage, 0, mixer1, 1);
-AudioConnection          patchCord4(playWavMessage, 1, mixer2, 1);
-AudioConnection          patchCord5(mixer1, 0, out, 0);
-AudioConnection          patchCord6(mixer2, 0, out, 1);
+AudioControlSGTL5000 audioShield;
+AudioOutputI2S out;
 
-void setup() {
+// Buttons
+Button buttons[NUMBER_OF_BUTTONS];
+
+// Mixers to mix differents audio sources
+AudioMixer4 mixer1, mixer2;
+
+// Connect WAV players to mixers
+AudioConnection patchCord1(buttons[0].player, 0, mixer1, 0);
+AudioConnection patchCord2(buttons[0].player, 1, mixer2, 0);
+AudioConnection patchCord3(buttons[1].player, 0, mixer1, 1);
+AudioConnection patchCord4(buttons[1].player, 1, mixer2, 1);
+
+// Connect mixers to output
+AudioConnection patchCord5(mixer1, 0, out, 0);
+AudioConnection patchCord6(mixer2, 0, out, 1);
+
+void setup()
+{
   Serial.begin(9600);
-  
+
   // Audio settings
   AudioMemory(10);
   audioShield.enable();
@@ -31,31 +44,43 @@ void setup() {
   // SD card reading
   SPI.setMOSI(SDCARD_MOSI_PIN);
   SPI.setSCK(SDCARD_SCK_PIN);
-  if (!(SD.begin(SDCARD_CS_PIN))) {
+  if (!(SD.begin(SDCARD_CS_PIN)))
+  {
     // stop here, but print a message repetitively
-    while (1) {
+    while (1)
+    {
       Serial.println("Unable to access the SD card");
       delay(500);
     }
   }
 
-  // PinModes
-  pinMode(0, INPUT_PULLUP);
-  pinMode(1, INPUT_PULLUP);
+  // define buttons
+  buttons[0].configure("MESSAGE.WAV", 0);
+  buttons[1].configure("MESSAGE.WAV", 1);
 
-  delay(1000);
+  // PinModes
+  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+  {
+    pinMode(buttons[i].pin, INPUT_PULLUP);
+  }
 }
 
-void loop() {
-  if (playWavMusic.isPlaying() == false) {
-    playWavMusic.play("GOT.WAV");
-    delay(10);
+void loop()
+{
+
+  // Read digital inputs
+  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+  {
+    int buttonPressed = digitalRead(buttons[i].pin);
+    if (buttonPressed == HIGH)
+      buttons[i].pressed = 1;
+    else
+      buttons[i].pressed = 0;
   }
 
-  int buttonPressed = digitalRead(0);
-  
-  if (buttonPressed == HIGH) {
-    playWavMessage.play("MESSAGE.WAV");
-    delay(10);
+  // uodate buttons
+  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
+  {
+    buttons[i].update();
   }
 }
