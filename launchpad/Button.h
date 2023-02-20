@@ -21,8 +21,11 @@ private:
     /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
     char *filename;
 
-    /* This method should only be called by update() */
-    void play();
+    /* These methods should only be called by update() */
+    void play(); // play the file
+    void stop(); // stop file from playing
+
+    int playing(); // returns true if the player is playing something
 };
 
 #endif

@@ -20,8 +20,12 @@ void Button::update()
         -> Button pressed is updated inside the Arduino loop
     */
 
-    if (pressed)
+    int filePlaying = playing();
+
+    if (pressed && !filePlaying)
         play();
+    else if (!pressed && filePlaying)
+        stop();
 }
 
 void Button::play()
@@ -29,4 +33,16 @@ void Button::play()
     /* Use wav player to play the file */
     player.play(filename);
     delay(10); // delay required by the wav player
+}
+
+void Button::stop()
+{
+    /* Stop wav player */
+    player.stop();
+}
+
+int Button::playing()
+{
+    /* Returns true if the player is playing */
+    return player.isPlaying();
 }

@@ -76,7 +76,12 @@ void loop()
   {
     int buttonPressed = digitalRead(buttons[i].pin);
     if (buttonPressed == HIGH)
+    {
       buttons[i].pressed = 1;
+      Serial.print("Button ");
+      Serial.print(i);
+      Serial.println(" being pressed !");
+    }
     else
       buttons[i].pressed = 0;
   }
@@ -86,4 +91,6 @@ void loop()
   {
     buttons[i].update();
   }
+
+  delay(100); // required because of Serial.println()
 }
