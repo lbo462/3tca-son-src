@@ -5,8 +5,6 @@
 
 #include "InitsAndSetup.h"
 
-
-/***************************************************************/
 void setup()
 {
   Serial.begin(9600);
@@ -28,42 +26,21 @@ void setup()
     }
   }
 
-  //setup mixers
+  // setup mixers
   setUpMixers();
-
-  // configure buttons with filenames and pins
-  buttons[0].configure("GOT.WAV", 0);
-  buttons[1].configure("MESSAGE.WAV", 1);
-
-  // configure pin modes
-  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-  {
-    pinMode(buttons[i].pin, INPUT_PULLUP);
-  }
 }
 
 void loop()
 {
+  // Read inputs
+  int analogValueRead = analogRead(A0);
 
-  // Read digital inputs
-  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-  {
-    int buttonPressed = digitalRead(buttons[i].pin);
-    if (buttonPressed == HIGH)
-    {
-      buttons[i].pressed = 1;
-      Serial.print("Button ");
-      Serial.print(i);
-      Serial.println(" being pressed !");
-    }
-    else
-      buttons[i].pressed = 0;
-  }
+  Serial.println(analogValueRead);
 
   // Update buttons
   for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
   {
-    buttons[i].update();
+    buttons[i].update(analogValueRead);
   }
 
   delay(100); // required because of Serial.println()
