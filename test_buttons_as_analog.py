@@ -3,12 +3,46 @@
 
     Test validity multiples buttons linked together to an analog value
     Computes every button combinations and determine corresponding req and analog value
+
+    Brute force model to find a valid resistance combination
 """
 
 import sys
 from typing import List
 
-DELTA = 20  # minimum difference between the values. Determined by the system noise
+DELTA = 5  # minimum difference between the values. Determined by the system noise
+AVAILABLE_RES = [
+    1000000,
+    100000,
+    10000,
+    5000,
+    1000,
+    330,
+    220,
+    100,
+    10,
+]
+
+
+def compute_linear_combinations(variables: List[float]) -> List[float]:
+    """Get values and return every values that can be made with theses"""
+    possible_values = variables.copy()
+    for r1 in variables:
+        for r2 in variables:
+            sum = r1 + r2
+            if sum not in possible_values:
+                possible_values.append(sum)
+                for r3 in variables:
+                    sum1 = sum + r3
+                    sum2 = r1 + r3
+                    sum3 = r2 + r3
+                    if sum1 not in possible_values:
+                        possible_values.append(sum1)
+                    if sum2 not in possible_values:
+                        possible_values.append(sum2)
+                    if sum3 not in possible_values:
+                        possible_values.append(sum3)
+    return possible_values
 
 
 def get_req(resistances: List[float]) -> float:
@@ -53,9 +87,10 @@ def binary_count(number_of_bit: int) -> List[List[int]]:
     return configurations
 
 
-if __name__ == "__main__":
-    resistances = [float(r) for r in sys.argv[1:]]
+def validate(resistances: List[float]) -> bool:
+    """Test if the proposed resitances overlap"""
     all_anal_values = []
+    valid = True
 
     for c in binary_count(len(resistances)):
         # keep only pressed buttons of the current config
@@ -72,5 +107,27 @@ if __name__ == "__main__":
         # compare with previous values
         for val in all_anal_values:
             if anal_value + DELTA > val > anal_value - DELTA:
-                print(f"WARNING : {anal_value} and {val} are too close !")
+                print(f"{val} and {anal_value} too close. ({len(all_anal_values)})")
+                valid = False
+                return valid  # comment to continue searching
         all_anal_values.append(anal_value)
+    return valid
+
+
+def main():
+    number_of_buttons = int(sys.argv[1])
+    possible_combinations = compute_linear_combinations(AVAILABLE_RES)
+    print(f"Computed {len(possible_combinations)} possible resistances combinations.")
+    for i in range(0, len(possible_combinations) - number_of_buttons + 1):
+        resistances = possible_combinations[i : i + number_of_buttons]
+        print(f"Testing with {resistances} ...")
+        if validate(resistances):
+            print("SUCCESS: Model is valid.")
+            break
+        else:
+            print("not valid.")
+
+
+if __name__ == "__main__":
+    # validate([16000, 7000, 2000, 6330, 5330])
+    main()

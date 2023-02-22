@@ -16,7 +16,7 @@ void setup()
   // SD card reading
   SPI.setMOSI(SDCARD_MOSI_PIN);
   SPI.setSCK(SDCARD_SCK_PIN);
-  if (!(SD.begin(SDCARD_CS_PIN)))
+  if (SD.begin(SDCARD_CS_PIN))
   {
     // stop here, but print a message repetitively
     while (1)
@@ -33,15 +33,10 @@ void setup()
 void loop()
 {
   // Read inputs
-  int analogValueRead = analogRead(A0);
+  int analogValueRead = analogRead(A7);
+  int digitalValueRead = digitalRead(0);
 
   Serial.println(analogValueRead);
-
-  // Update buttons
-  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-  {
-    buttons[i].update(analogValueRead);
-  }
 
   delay(100); // required because of Serial.println()
 }
