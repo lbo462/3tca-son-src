@@ -3,11 +3,17 @@
 SoundButton::SoundButton()
 {
     pressed = 0;
+    playerIndex = -1; // index -1 implies that no player is set
+}
+
+SoundButton::~SoundButton()
+{
+    if (hasPlayer())
+        playerMgmt.p[playerIndex].release();
 }
 
 void SoundButton::configure(char *filename_)
 {
-    /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
     filename = filename_;
 }
 
@@ -17,35 +23,44 @@ void SoundButton::update()
         /!\ Should be called at each frame /!\
         Play file if button is pressed
     */
-    int filePlaying = player.isPlaying();
-
-    if (pressed && !filePlaying)
-        play();
-    else if (!pressed && filePlaying)
-        stop();
-}
-
-void SoundButton::play()
-{
-    /* Use wav player to play the file */
-    player.play(filename);
-    delay(10); // delay required by the wav player
-}
-
-void SoundButton::stop()
-{
-    /* Stop wav player */
-    player.stop();
+    if (pressed && hasPlayer())
+    {
+        if (!playerMgmt.p[playerIndex].isPlaying())
+            playerMgmt.p[playerIndex].play();
+    }
 }
 
 void SoundButton::press()
 {
-    pressed = 1;
+    if (!pressed) // do not press the button if already pressed ^^
+    {
+        pressed = 1;
+        // Get and configure a player
+        if (!hasPlayer())
+            playerIndex = playerMgmt.getPlayer();
+        if (hasPlayer())
+            playerMgmt.p[playerIndex].configure(filename);
+        // else, no player is set and the button won't play anything
+    }
 }
 
 void SoundButton::release()
 {
-    pressed = 0;
+    if (pressed) // do not release the button if already released ^^
+    {
+        pressed = 0;
+        // Free the player
+        if (hasPlayer())
+        {
+            playerMgmt.p[playerIndex].release();
+            playerIndex = -1;
+        }
+    }
+}
+
+int SoundButton::hasPlayer()
+{
+    return playerIndex != -1;
 }
 
 int SoundButton::isPressed()
