@@ -1,12 +1,12 @@
-#ifndef button_teensy_h_
-#define button_teensy_h_
+#ifndef soundbutton_teensy_h_
+#define soundbutton_teensy_h_
 
 #include <Audio.h>
 
-class Button
+class SoundButton
 {
 public:
-    Button();
+    SoundButton();
 
     AudioPlaySdWav player; // is public for patchCord linking only. wav files player
 

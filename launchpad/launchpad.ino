@@ -31,7 +31,7 @@ void setup()
 
   // configure buttons with filenames and pins
   char *filenames[ROW_LEN] = {"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"};
-  buttonRow.configure(A0, filenames);
+  soundButtonRow.configure(A0, filenames);
 }
 
 void loop()
@@ -39,12 +39,12 @@ void loop()
   // Read inputs
   Serial.print(analogRead(A0));
 
-  buttonRow.update();
+  soundButtonRow.update();
 
   Serial.print(" ");
-  Serial.print(buttonRow.buttons[0].isPressed());
-  Serial.print(buttonRow.buttons[1].isPressed());
-  Serial.print(buttonRow.buttons[2].isPressed());
+  Serial.print(soundButtonRow.buttons[0].isPressed());
+  Serial.print(soundButtonRow.buttons[1].isPressed());
+  Serial.print(soundButtonRow.buttons[2].isPressed());
 
   Serial.println();
   delay(100); // required because of Serial.println()

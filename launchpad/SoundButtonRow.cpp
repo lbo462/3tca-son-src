@@ -1,15 +1,15 @@
-#include "ButtonRow.h"
+#include "SoundButtonRow.h"
 
-ButtonRow::ButtonRow()
+SoundButtonRow::SoundButtonRow()
 {
 }
 
-ButtonRow::~ButtonRow()
+SoundButtonRow::~SoundButtonRow()
 {
     delete[] buttons;
 }
 
-void ButtonRow::configure(int pin_, char *filenames[ROW_LEN])
+void SoundButtonRow::configure(int pin_, char *filenames[ROW_LEN])
 {
     /*
         Configure every buttons with the filenames to play
@@ -18,7 +18,7 @@ void ButtonRow::configure(int pin_, char *filenames[ROW_LEN])
         buttons[i].configure(filenames[i]);
 }
 
-void ButtonRow::update()
+void SoundButtonRow::update()
 {
     /*
         Check button presses

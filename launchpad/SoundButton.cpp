@@ -1,17 +1,17 @@
-#include "Button.h"
+#include "SoundButton.h"
 
-Button::Button()
+SoundButton::SoundButton()
 {
     pressed = 0;
 }
 
-void Button::configure(char *filename_)
+void SoundButton::configure(char *filename_)
 {
     /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
     filename = filename_;
 }
 
-void Button::update()
+void SoundButton::update()
 {
     /*
         /!\ Should be called at each frame /!\
@@ -25,30 +25,30 @@ void Button::update()
         stop();
 }
 
-void Button::play()
+void SoundButton::play()
 {
     /* Use wav player to play the file */
     player.play(filename);
     delay(10); // delay required by the wav player
 }
 
-void Button::stop()
+void SoundButton::stop()
 {
     /* Stop wav player */
     player.stop();
 }
 
-void Button::press()
+void SoundButton::press()
 {
     pressed = 1;
 }
 
-void Button::release()
+void SoundButton::release()
 {
     pressed = 0;
 }
 
-int Button::isPressed()
+int SoundButton::isPressed()
 {
     return pressed;
 }
