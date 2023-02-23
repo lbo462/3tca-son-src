@@ -1,26 +1,23 @@
-#include "Button.h"
+#include "SoundButton.h"
 
-Button::Button()
+SoundButton::SoundButton()
 {
     pressed = 0;
 }
 
-void Button::configure(char *filename_, int pin_)
+void SoundButton::configure(char *filename_)
 {
     /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
     filename = filename_;
-    pin = pin_;
 }
 
-void Button::update()
+void SoundButton::update()
 {
     /*
         /!\ Should be called at each frame /!\
         Play file if button is pressed
-        -> Button pressed is updated inside the Arduino loop
     */
-
-    int filePlaying = playing();
+    int filePlaying = player.isPlaying();
 
     if (pressed && !filePlaying)
         play();
@@ -28,21 +25,30 @@ void Button::update()
         stop();
 }
 
-void Button::play()
+void SoundButton::play()
 {
     /* Use wav player to play the file */
     player.play(filename);
     delay(10); // delay required by the wav player
 }
 
-void Button::stop()
+void SoundButton::stop()
 {
     /* Stop wav player */
     player.stop();
 }
 
-int Button::playing()
+void SoundButton::press()
 {
-    /* Returns true if the player is playing */
-    return player.isPlaying();
+    pressed = 1;
+}
+
+void SoundButton::release()
+{
+    pressed = 0;
+}
+
+int SoundButton::isPressed()
+{
+    return pressed;
 }

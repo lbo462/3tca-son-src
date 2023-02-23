@@ -5,8 +5,6 @@
 
 #include "InitsAndSetup.h"
 
-
-/***************************************************************/
 void setup()
 {
   Serial.begin(9600);
@@ -18,7 +16,7 @@ void setup()
   // SD card reading
   SPI.setMOSI(SDCARD_MOSI_PIN);
   SPI.setSCK(SDCARD_SCK_PIN);
-  if (!(SD.begin(SDCARD_CS_PIN)))
+  if (SD.begin(SDCARD_CS_PIN))
   {
     // stop here, but print a message repetitively
     while (1)
@@ -28,43 +26,26 @@ void setup()
     }
   }
 
-  //setup mixers
+  // setup mixers
   setUpMixers();
 
   // configure buttons with filenames and pins
-  buttons[0].configure("GOT.WAV", 0);
-  buttons[1].configure("MESSAGE.WAV", 1);
-
-  // configure pin modes
-  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-  {
-    pinMode(buttons[i].pin, INPUT_PULLUP);
-  }
+  char *filenames[ROW_LEN] = {"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"};
+  soundButtonRow.configure(A0, filenames);
 }
 
 void loop()
 {
+  // Read inputs
+  Serial.print(analogRead(A0));
 
-  // Read digital inputs
-  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-  {
-    int buttonPressed = digitalRead(buttons[i].pin);
-    if (buttonPressed == HIGH)
-    {
-      buttons[i].pressed = 1;
-      Serial.print("Button ");
-      Serial.print(i);
-      Serial.println(" being pressed !");
-    }
-    else
-      buttons[i].pressed = 0;
-  }
+  soundButtonRow.update();
 
-  // Update buttons
-  for (int i = 0; i < NUMBER_OF_BUTTONS; i++)
-  {
-    buttons[i].update();
-  }
+  Serial.print(" ");
+  Serial.print(soundButtonRow.buttons[0].isPressed());
+  Serial.print(soundButtonRow.buttons[1].isPressed());
+  Serial.print(soundButtonRow.buttons[2].isPressed());
 
+  Serial.println();
   delay(100); // required because of Serial.println()
 }
