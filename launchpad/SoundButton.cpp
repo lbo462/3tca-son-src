@@ -36,7 +36,8 @@ void SoundButton::press()
     {
         pressed = 1;
         // Get and configure a player
-        playerIndex = playerMgmt.getPlayer();
+        if (!hasPlayer())
+            playerIndex = playerMgmt.getPlayer();
         if (hasPlayer())
             playerMgmt.p[playerIndex].configure(filename);
         // else, no player is set and the button won't play anything
@@ -50,7 +51,10 @@ void SoundButton::release()
         pressed = 0;
         // Free the player
         if (hasPlayer())
+        {
             playerMgmt.p[playerIndex].release();
+            playerIndex = -1;
+        }
     }
 }
 

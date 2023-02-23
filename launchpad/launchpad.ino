@@ -63,6 +63,8 @@ void loop()
   Serial.print(soundButtonRow.buttons[0].playerIndex);
   Serial.print(soundButtonRow.buttons[1].playerIndex);
   Serial.print(soundButtonRow.buttons[2].playerIndex);
+  Serial.print(" ");
+  Serial.print(playerMgmt.p[0].isAvailable());
 
   Serial.println();
   delay(100); // required because of Serial.println()

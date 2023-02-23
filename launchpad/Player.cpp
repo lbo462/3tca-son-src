@@ -1,21 +1,26 @@
 #include "Player.h"
 
+Player::Player()
+{
+    available = 1;
+}
+
 void Player::configure(char *filename_)
 {
     filename = filename_;
-    available = 1;
+    available = 0;
 }
 
 void Player::release()
 {
     if (isPlaying())
         stop();
-    available = 0;
+    available = 1;
 }
 
 int Player::isAvailable()
 {
-    return 1; // TODO should return available and definitly not 1
+    return available;
 }
 
 void Player::play()

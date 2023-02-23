@@ -6,6 +6,8 @@
 class Player
 {
 public:
+    Player();
+
     AudioPlaySdWav wavPlayer;
 
     void configure(char *filename_); // configure and take possesion of player
