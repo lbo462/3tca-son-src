@@ -28,15 +28,24 @@ void setup()
 
   // setup mixers
   setUpMixers();
+
+  // configure buttons with filenames and pins
+  char *filenames[ROW_LEN] = {"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"};
+  buttonRow.configure(A0, filenames);
 }
 
 void loop()
 {
   // Read inputs
-  int analogValueRead = analogRead(A7);
-  int digitalValueRead = digitalRead(0);
+  Serial.print(analogRead(A0));
 
-  Serial.println(analogValueRead);
+  buttonRow.update();
 
+  Serial.print(" ");
+  Serial.print(buttonRow.buttons[0].isPressed());
+  Serial.print(buttonRow.buttons[1].isPressed());
+  Serial.print(buttonRow.buttons[2].isPressed());
+
+  Serial.println();
   delay(100); // required because of Serial.println()
 }

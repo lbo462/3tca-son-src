@@ -8,14 +8,16 @@ class Button
 public:
     Button();
 
-    int pressed;           // Button pressed boolean
-    int analogValue;       // Arduino analog value
     AudioPlaySdWav player; // is public for patchCord linking only. wav files player
 
-    void configure(char *filename_, int analogValue_); // configure filename and pin
+    void configure(char *filename_); // configure filename and pin
 
     /* This test if the button is pressed and play the song in that case */
-    void update(int analogValueRead);
+    void update();
+
+    void press();    // press the button
+    void release();  // release it
+    int isPressed(); // check if pressed
 
 private:
     /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
@@ -25,7 +27,7 @@ private:
     void play(); // play the file
     void stop(); // stop file from playing
 
-    int playing(); // returns true if the player is playing something
+    int pressed; // Button pressed boolean
 };
 
 #endif

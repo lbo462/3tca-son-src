@@ -1,8 +1,8 @@
 """
-    Usage : python test_button_as_analog.py <r1> <r2> <r3> ...
+    Usage : python test_button_as_analog.py <NUMBER_OF_BUTTONS>
 
     Test validity multiples buttons linked together to an analog value
-    Computes every button combinations and determine corresponding req and analog value
+    Computes every button combinations and determine corresponding analog value
 
     Brute force model to find a valid resistance combination
 """
@@ -10,7 +10,7 @@
 import sys
 from typing import List
 
-DELTA = 5  # minimum difference between the values. Determined by the system noise
+DELTA = 30  # minimum difference between the values. Determined by the system noise
 AVAILABLE_RES = [
     1000000,
     100000,
@@ -59,7 +59,7 @@ def get_req(resistances: List[float]) -> float:
 
 def get_anal_value(resistance: float) -> float:
     """Compute analog value read"""
-    return 1024 * (1 - resistance / (resistance + 1000))  # big resistance
+    return 1024 * (1 - resistance / (resistance + 220))  # big resistance
 
 
 def binary_count(number_of_bit: int) -> List[List[int]]:
@@ -117,13 +117,14 @@ def validate(resistances: List[float]) -> bool:
 def main():
     number_of_buttons = int(sys.argv[1])
     possible_combinations = compute_linear_combinations(AVAILABLE_RES)
+    # possible_combinations = AVAILABLE_RES
     print(f"Computed {len(possible_combinations)} possible resistances combinations.")
     for i in range(0, len(possible_combinations) - number_of_buttons + 1):
         resistances = possible_combinations[i : i + number_of_buttons]
         print(f"Testing with {resistances} ...")
         if validate(resistances):
             print("SUCCESS: Model is valid.")
-            break
+            input("Press any key to continue ...")
         else:
             print("not valid.")
 
