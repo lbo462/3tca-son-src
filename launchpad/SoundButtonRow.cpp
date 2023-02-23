@@ -4,11 +4,6 @@ SoundButtonRow::SoundButtonRow()
 {
 }
 
-SoundButtonRow::~SoundButtonRow()
-{
-    delete[] buttons;
-}
-
 void SoundButtonRow::configure(int pin_, char *filenames[ROW_LEN])
 {
     /*
@@ -33,45 +28,55 @@ void SoundButtonRow::update()
         [1, 1, 1] -> 697.1473950000964
     */
 
-    // first release every button
-    buttons[0].release();
-    buttons[1].release();
-    buttons[2].release();
-
     int analogValue = analogRead(pin);
     // press corresponding buttons
     if (analogValue - DELTA < 417 && 417 < analogValue + DELTA)
     {
         buttons[0].press();
+        buttons[1].release();
+        buttons[2].release();
     }
-    if (analogValue - DELTA < 336 && 336 < analogValue + DELTA)
+    else if (analogValue - DELTA < 336 && 336 < analogValue + DELTA)
     {
+        buttons[0].release();
+        buttons[1].release();
         buttons[2].press();
     }
-    if (analogValue - DELTA < 553 && 553 < analogValue + DELTA)
+    else if (analogValue - DELTA < 553 && 553 < analogValue + DELTA)
     {
         buttons[0].press();
         buttons[1].press();
+        buttons[2].release();
     }
-    if (analogValue - DELTA < 500 && 500 < analogValue + DELTA)
+    else if (analogValue - DELTA < 500 && 500 < analogValue + DELTA)
     {
+        buttons[0].release();
+        buttons[1].release();
         buttons[2].press();
     }
-    if (analogValue - DELTA < 636 && 636 < analogValue + DELTA)
+    else if (analogValue - DELTA < 636 && 636 < analogValue + DELTA)
     {
         buttons[0].press();
+        buttons[1].release();
         buttons[2].press();
     }
-    if (analogValue - DELTA < 605 && 605 < analogValue + DELTA)
+    else if (analogValue - DELTA < 605 && 605 < analogValue + DELTA)
     {
+        buttons[0].release();
         buttons[1].press();
         buttons[2].press();
     }
-    if (analogValue - DELTA < 697 && 697 < analogValue + DELTA)
+    else if (analogValue - DELTA < 697 && 697 < analogValue + DELTA)
     {
         buttons[0].press();
         buttons[1].press();
         buttons[2].press();
+    }
+    else
+    {
+        buttons[0].release();
+        buttons[1].release();
+        buttons[2].release();
     }
 
     /*
