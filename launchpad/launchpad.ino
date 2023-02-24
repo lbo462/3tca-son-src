@@ -3,7 +3,7 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
-#include "SoundButtonRow.h"
+#include "Tab.h"
 
 // SD Card reading
 #define SDCARD_CS_PIN 10
@@ -13,7 +13,11 @@
 // output and audio shield
 AudioControlSGTL5000 audioShield;
 
-SoundButtonRow soundButtonRow;
+Tab tab1;
+
+// configure buttons with filenames and pins
+byte pins[NUMBER_OF_SOUND_ROWS] = {A0};
+char *filenames[NUMBER_OF_SOUND_ROWS][ROW_LEN] = {{"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"}};
 
 void setup()
 {
@@ -39,9 +43,7 @@ void setup()
 
   setupGain();
 
-  // configure buttons with filenames and pins
-  char *filenames[ROW_LEN] = {"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"};
-  soundButtonRow.configure(A0, filenames);
+  tab1.configureSounds(pins, filenames);
 
   Serial.println("Setup done.");
 
@@ -53,16 +55,16 @@ void loop()
   // Read inputs
   Serial.print(analogRead(A0));
 
-  soundButtonRow.update();
+  tab1.update();
 
   Serial.print(" ");
-  Serial.print(soundButtonRow.buttons[0].isPressed());
-  Serial.print(soundButtonRow.buttons[1].isPressed());
-  Serial.print(soundButtonRow.buttons[2].isPressed());
+  Serial.print(tab1.soundRows[0].buttons[0].isPressed());
+  Serial.print(tab1.soundRows[0].buttons[1].isPressed());
+  Serial.print(tab1.soundRows[0].buttons[2].isPressed());
   Serial.print(" ");
-  Serial.print(soundButtonRow.buttons[0].playerIndex);
-  Serial.print(soundButtonRow.buttons[1].playerIndex);
-  Serial.print(soundButtonRow.buttons[2].playerIndex);
+  Serial.print(tab1.soundRows[0].buttons[0].playerIndex);
+  Serial.print(tab1.soundRows[0].buttons[1].playerIndex);
+  Serial.print(tab1.soundRows[0].buttons[2].playerIndex);
   Serial.print(" ");
   Serial.print(playerMgmt.p[0].isAvailable());
 

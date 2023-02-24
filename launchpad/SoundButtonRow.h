@@ -14,6 +14,7 @@ public:
     void configure(int pin_, char *filenames[ROW_LEN]);
     void update(); // update every buttons
 
+    // TODO make private
     SoundButton buttons[ROW_LEN];
 
 private:
