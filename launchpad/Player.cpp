@@ -5,9 +5,9 @@ Player::Player()
     available = 1;
 }
 
-void Player::configure(char *filename_)
+void Player::configure(int *samples_)
 {
-    filename = filename_;
+    samples = samples_;
     available = 0;
 }
 
@@ -25,16 +25,15 @@ int Player::isAvailable()
 
 void Player::play()
 {
-    wavPlayer.play(filename);
-    delay(10);
+    memPlayer.play(samples);
 }
 
 void Player::stop()
 {
-    wavPlayer.stop();
+    memPlayer.stop();
 }
 
 int Player::isPlaying()
 {
-    return wavPlayer.isPlaying();
+    return memPlayer.isPlaying();
 }
