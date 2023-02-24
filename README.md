@@ -33,6 +33,4 @@ With above configuration, you should be able to read and write in this repo.
 
 ## Electrical circuit
 
-Current circuit is a row of 3 buttons linked to a single analogical output (A0).
-
-The resistances we use are 320, 450 and 230 Ohms.
+Current circuit is three buttons linked to digital pins 0, 1, and 2.

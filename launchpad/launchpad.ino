@@ -3,21 +3,17 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
-#include "Tab.h"
+#include "TabMgmt.h"
 
 // SD Card reading
-#define SDCARD_CS_PIN 10
+#define SDCARD_CS_PIN BUILTIN_SDCARD
 #define SDCARD_MOSI_PIN 11 // not actually used
 #define SDCARD_SCK_PIN 13  // not actually used
 
 // output and audio shield
 AudioControlSGTL5000 audioShield;
 
-Tab tab1;
-
-// configure buttons with filenames and pins
-byte pins[NUMBER_OF_SOUND_BUTTONS] = {0, 1, 2};
-char *filenames[NUMBER_OF_SOUND_BUTTONS] = {"PUNCH.WAV", "BASS.WAV", "MESSAGE.WAV"};
+TabMgmt tabMgmt;
 
 void setup()
 {
@@ -37,13 +33,11 @@ void setup()
 
   // Audio settings
   Serial.println("Configuring audio shield ...");
-  AudioMemory(50);
+  AudioMemory(10);
   audioShield.enable();
   audioShield.volume(1);
 
   setupGain();
-
-  tab1.configureSounds(pins, filenames);
 
   Serial.println("Setup done.");
 
@@ -52,17 +46,21 @@ void setup()
 
 void loop()
 {
-  // Read inputs
+  tabMgmt.update();
 
-  tab1.update();
+  if (digitalRead(32))
+    tabMgmt.nextTab();
 
-  Serial.print(tab1.soundButtons[0].isPressed());
-  Serial.print(tab1.soundButtons[1].isPressed());
-  Serial.print(tab1.soundButtons[2].isPressed());
+  Serial.print(tabMgmt.getTabNumber());
   Serial.print(" ");
-  Serial.print(tab1.soundButtons[0].playerIndex);
-  Serial.print(tab1.soundButtons[1].playerIndex);
-  Serial.print(tab1.soundButtons[2].playerIndex);
+
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[0].isPressed());
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].isPressed());
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].isPressed());
+  Serial.print(" ");
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[0].playerIndex);
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].playerIndex);
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].playerIndex);
   Serial.print(" ");
   Serial.print(playerMgmt.p[0].isAvailable());
 
