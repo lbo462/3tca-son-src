@@ -1,20 +1,20 @@
 #ifndef tab_teensy_h_
 #define tab_teensy_h_
 
-#include "SoundButtonRow.h"
+#include "SoundButton.h"
 
-#define NUMBER_OF_SOUND_ROWS 1
+#define NUMBER_OF_SOUND_BUTTONS 3
 
 class Tab
 {
 public:
     Tab();
-    void configureSounds(byte pins[NUMBER_OF_SOUND_ROWS], char *filenames[NUMBER_OF_SOUND_ROWS][ROW_LEN]);
+    void configureSounds(byte pins[NUMBER_OF_SOUND_BUTTONS], char *filenames[NUMBER_OF_SOUND_BUTTONS]);
 
     void update();
 
     // TODO make private
-    SoundButtonRow soundRows[NUMBER_OF_SOUND_ROWS];
+    SoundButton soundButtons[NUMBER_OF_SOUND_BUTTONS];
 
 private:
 };

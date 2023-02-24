@@ -12,8 +12,9 @@ SoundButton::~SoundButton()
         playerMgmt.p[playerIndex].release();
 }
 
-void SoundButton::configure(char *filename_)
+void SoundButton::configure(byte pin_, char *filename_)
 {
+    pin = pin_;
     filename = filename_;
 }
 
@@ -23,6 +24,11 @@ void SoundButton::update()
         /!\ Should be called at each frame /!\
         Play file if button is pressed
     */
+    if (digitalRead(pin))
+        press();
+    else
+        release();
+
     if (pressed && hasPlayer())
     {
         if (!playerMgmt.p[playerIndex].isPlaying())

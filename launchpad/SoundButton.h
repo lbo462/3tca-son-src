@@ -9,7 +9,7 @@ public:
     SoundButton();
     ~SoundButton();
 
-    void configure(char *filename_); // configure player filename
+    void configure(byte pin_, char *filename_); // configure player filename
 
     /* This test if the button is pressed and play the song in that case */
     void update();
@@ -23,6 +23,7 @@ public:
 
 private:
     char *filename;
+    int pin;
     int pressed;     // Button pressed boolean
     int hasPlayer(); // returns true if a player is set
 };

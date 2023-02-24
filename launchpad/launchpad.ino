@@ -16,8 +16,8 @@ AudioControlSGTL5000 audioShield;
 Tab tab1;
 
 // configure buttons with filenames and pins
-byte pins[NUMBER_OF_SOUND_ROWS] = {A0};
-char *filenames[NUMBER_OF_SOUND_ROWS][ROW_LEN] = {{"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"}};
+byte pins[NUMBER_OF_SOUND_BUTTONS] = {0, 1, 2};
+char *filenames[NUMBER_OF_SOUND_BUTTONS] = {"PUNCH.WAV", "BASS.WAV", "MESSAGE.WAV"};
 
 void setup()
 {
@@ -37,7 +37,7 @@ void setup()
 
   // Audio settings
   Serial.println("Configuring audio shield ...");
-  AudioMemory(10);
+  AudioMemory(50);
   audioShield.enable();
   audioShield.volume(1);
 
@@ -53,18 +53,16 @@ void setup()
 void loop()
 {
   // Read inputs
-  Serial.print(analogRead(A0));
 
   tab1.update();
 
+  Serial.print(tab1.soundButtons[0].isPressed());
+  Serial.print(tab1.soundButtons[1].isPressed());
+  Serial.print(tab1.soundButtons[2].isPressed());
   Serial.print(" ");
-  Serial.print(tab1.soundRows[0].buttons[0].isPressed());
-  Serial.print(tab1.soundRows[0].buttons[1].isPressed());
-  Serial.print(tab1.soundRows[0].buttons[2].isPressed());
-  Serial.print(" ");
-  Serial.print(tab1.soundRows[0].buttons[0].playerIndex);
-  Serial.print(tab1.soundRows[0].buttons[1].playerIndex);
-  Serial.print(tab1.soundRows[0].buttons[2].playerIndex);
+  Serial.print(tab1.soundButtons[0].playerIndex);
+  Serial.print(tab1.soundButtons[1].playerIndex);
+  Serial.print(tab1.soundButtons[2].playerIndex);
   Serial.print(" ");
   Serial.print(playerMgmt.p[0].isAvailable());
 
