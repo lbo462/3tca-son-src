@@ -5,6 +5,10 @@
 
 #include "TabMgmt.h"
 
+// Define pins for tab swapping
+#define NEXT_TAB_PIN 0
+#define PREV_TAB_PIN 1
+
 // SD Card reading
 #define SDCARD_CS_PIN BUILTIN_SDCARD
 #define SDCARD_MOSI_PIN 11 // not actually used
@@ -46,11 +50,14 @@ void setup()
 
 void loop()
 {
+  if (digitalRead(NEXT_TAB_PIN))
+    tabMgmt.nextTab();
+  if (digitalRead(PREV_TAB_PIN))
+    tabMgmt.previousTab();
+
   tabMgmt.update();
 
-  if (digitalRead(32))
-    tabMgmt.nextTab();
-
+  Serial.print("Tab #");
   Serial.print(tabMgmt.getTabNumber());
   Serial.print(" ");
 
