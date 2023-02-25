@@ -12,12 +12,13 @@ public:
 
     Player *p; // array of every players linked by patch cords
 
+    void setGain(float gain_); // change gain to the given value between 0 and 1
+
     int getPlayer(); // returns the index of an available player. Returns -1 if no player is available
     // even if a player is returned, it's not implied that the player will be used
     // The one who configure the button will take the player as used and block it
 };
 
-void setupGain();
 extern PlayerMgmt playerMgmt;
 
 #endif

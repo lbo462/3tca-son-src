@@ -40,7 +40,7 @@ void setup()
   audioShield.enable();
   audioShield.volume(1);
 
-  setupGain();
+  playerMgmt.setGain(0.5);
 
   Serial.println("Setup done.");
 
