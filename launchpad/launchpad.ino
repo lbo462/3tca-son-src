@@ -22,11 +22,11 @@ void setup()
   Serial.begin(9600);
 
   // Try to read SD card
-  while (!(SD.begin(SDCARD_CS_PIN)))
+  /*while (!(SD.begin(SDCARD_CS_PIN)))
   {
     Serial.println("Unable to access the SD card");
     delay(1000);
-  }
+  }*/
 
   // SD card reading
   SPI.setMOSI(SDCARD_MOSI_PIN);
@@ -81,5 +81,21 @@ void loop()
   Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[2].getPlayerIndex());
 
   Serial.println();
+
+  //debugging without hardware from the serial monitor
+  String command;
+  if(Serial.available()){
+        command = Serial.readStringUntil('\n');
+        if(command.indexOf("dw") >= 0){
+            digitalWrite(command[2], HIGH);
+        }
+        else if(command.indexOf("aw") >= 0){
+            analogWrite(command[2], command.substring(3, command.length()).toInt());
+        }
+        else{
+            Serial.println("Invalid command");
+        }
+    }
+
   delay(100); // required because of Serial.println() and tab swapping !!
 }
