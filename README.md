@@ -40,3 +40,7 @@ Tabs can be changed via pins 0 and 1 (defined in ``lauchnpad.ino``)
 ## Tabs configuring
 
 Tabs are defined in ``TabMgmt.cpp``. Pins and sounds can be changed there.
+
+<hr>
+
+note to myself: Arduino sucks at dealing with subfolders.

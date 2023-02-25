@@ -1,7 +1,9 @@
 #include "SoundButton.h"
 
-SoundButton::SoundButton()
+SoundButton::SoundButton(byte pin_, const unsigned int *sample_)
 {
+    pin = pin_;
+    sample = sample_;
     pressed = 0;
     playerIndex = -1; // index -1 implies that no player is set
 }
@@ -10,12 +12,6 @@ SoundButton::~SoundButton()
 {
     if (hasPlayer())
         playerMgmt.p[playerIndex].release();
-}
-
-void SoundButton::configure(byte pin_, char *filename_)
-{
-    pin = pin_;
-    filename = filename_;
 }
 
 void SoundButton::update()
@@ -45,7 +41,7 @@ void SoundButton::press()
         if (!hasPlayer())
             playerIndex = playerMgmt.getPlayer();
         if (hasPlayer()) // verify if a player was found
-            playerMgmt.p[playerIndex].configure(filename);
+            playerMgmt.p[playerIndex].configure(sample);
         // else, no player is set and the button won't play anything
     }
 }

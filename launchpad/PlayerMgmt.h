@@ -3,7 +3,7 @@
 
 #include "Player.h"
 
-#define NUMBER_OF_PLAYERS 16 // DO NOT CHANGE WITHOUT PERMISSION
+#define NUMBER_OF_PLAYERS 32 // DO NOT CHANGE WITHOUT PERMISSION
 
 class PlayerMgmt
 {

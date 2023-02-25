@@ -8,10 +8,10 @@ class Player
 public:
     Player();
 
-    AudioPlaySdWav wavPlayer;
+    AudioPlayMemory memPlayer;
 
-    void configure(char *filename_); // configure and take possesion of player
-    void release();                  // release player for someone else
+    void configure(const unsigned int *sample_); // configure and take possesion of player
+    void release();                              // release player for someone else
 
     int isAvailable();
     int isPlaying();
@@ -20,9 +20,8 @@ public:
     void stop();
 
 private:
-    /* WARNING : files should be WAV files with a 16 Bit resolution and a 44100 Hz audio frequency */
-    char *filename;
     int available;
+    unsigned int *sample;
 };
 
 #endif
