@@ -10,8 +10,8 @@ public:
 
     AudioPlayMemory memPlayer;
 
-    void configure(int *samples_); // configure and take possesion of player
-    void release();                  // release player for someone else
+    void configure(const unsigned int *sample_); // configure and take possesion of player
+    void release();                              // release player for someone else
 
     int isAvailable();
     int isPlaying();
@@ -20,9 +20,8 @@ public:
     void stop();
 
 private:
-    /* WARNING : samples are tables of integers in a cpp file */
     int available;
-    int *samples;
+    unsigned int *sample;
 };
 
 #endif

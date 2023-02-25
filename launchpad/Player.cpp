@@ -5,9 +5,9 @@ Player::Player()
     available = 1;
 }
 
-void Player::configure(int *samples_)
+void Player::configure(const unsigned int *sample_)
 {
-    samples = samples_;
+    sample = (unsigned int *)sample_;
     available = 0;
 }
 
@@ -25,7 +25,7 @@ int Player::isAvailable()
 
 void Player::play()
 {
-    memPlayer.play(samples);
+    memPlayer.play(sample);
 }
 
 void Player::stop()

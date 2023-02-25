@@ -8,20 +8,20 @@ TabMgmt::TabMgmt()
     byte pins[NUMBER_OF_SOUND_BUTTONS] = {33, 34, 35};
 
     // Tab 1
-    char *filenames1[NUMBER_OF_SOUND_BUTTONS] = {
-        "PUNCH.WAV",
-        "PUNCH.WAV",
-        "PUNCH.WAV",
+    const unsigned int *samples1[NUMBER_OF_SOUND_BUTTONS] = {
+        AudioSampleKick,
+        AudioSampleKick,
+        AudioSampleKick,
     };
-    tabs[0].configureSounds(pins, filenames1);
+    tabs[0].configureSounds(pins, samples1);
 
     // Tab 2
-    char *filenames2[NUMBER_OF_SOUND_BUTTONS] = {
-        "BASS.WAV",
-        "BASS.WAV",
-        "BASS.WAV",
+    const unsigned int *samples2[NUMBER_OF_SOUND_BUTTONS] = {
+        AudioSampleGong,
+        AudioSampleGong,
+        AudioSampleGong,
     };
-    tabs[1].configureSounds(pins, filenames2);
+    tabs[1].configureSounds(pins, samples2);
 }
 
 void TabMgmt::nextTab()

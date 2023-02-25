@@ -9,7 +9,7 @@ class Tab
 {
 public:
     Tab();
-    void configureSounds(byte pins[NUMBER_OF_SOUND_BUTTONS], char *filenames[NUMBER_OF_SOUND_BUTTONS]);
+    void configureSounds(byte pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
 
     void update();
 

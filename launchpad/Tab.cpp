@@ -5,10 +5,10 @@ Tab::Tab()
     active = 0;
 }
 
-void Tab::configureSounds(byte pins[NUMBER_OF_SOUND_BUTTONS], char *filenames[NUMBER_OF_SOUND_BUTTONS])
+void Tab::configureSounds(byte pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS])
 {
     for (int i = 0; i < NUMBER_OF_SOUND_BUTTONS; i++)
-        soundButtons[i].configure(pins[i], filenames[i]);
+        soundButtons[i].configure(pins[i], samples[i]);
 }
 
 void Tab::update()

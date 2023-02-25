@@ -3,6 +3,10 @@
 
 #include "Tab.h"
 
+// include samples
+#include "AudioSampleKick.h"
+#include "AudioSampleGong.h"
+
 #define NUMBER_OF_TABS 2
 
 class TabMgmt

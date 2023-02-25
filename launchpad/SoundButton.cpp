@@ -12,10 +12,10 @@ SoundButton::~SoundButton()
         playerMgmt.p[playerIndex].release();
 }
 
-void SoundButton::configure(byte pin_, char *filename_)
+void SoundButton::configure(byte pin_, const unsigned int *sample_)
 {
     pin = pin_;
-    filename = filename_;
+    sample = sample_;
 }
 
 void SoundButton::update()
@@ -45,7 +45,7 @@ void SoundButton::press()
         if (!hasPlayer())
             playerIndex = playerMgmt.getPlayer();
         if (hasPlayer()) // verify if a player was found
-            playerMgmt.p[playerIndex].configure(filename);
+            playerMgmt.p[playerIndex].configure(sample);
         // else, no player is set and the button won't play anything
     }
 }
