@@ -18,15 +18,16 @@ void SoundButton::update()
 {
     /*
         /!\ Should be called at each frame /!\
-        Play file if button is pressed
+        Play sound if button is pressed
     */
-    if (digitalRead(pin))
+    if (digitalRead(pin) && !pressed)
         press();
-    else
+    else if (pressed)
         release();
 
     if (pressed && hasPlayer())
     {
+        playerMgmt.p[playerIndex].update(); // update timer
         if (!playerMgmt.p[playerIndex].isPlaying())
             playerMgmt.p[playerIndex].play();
     }
@@ -34,29 +35,23 @@ void SoundButton::update()
 
 void SoundButton::press()
 {
-    if (!pressed) // do not press the button if already pressed ^^
-    {
-        pressed = 1;
-        // Get and configure a player
-        if (!hasPlayer())
-            playerIndex = playerMgmt.getPlayer();
-        if (hasPlayer()) // verify if a player was found
-            playerMgmt.p[playerIndex].configure(sample);
-        // else, no player is set and the button won't play anything
-    }
+    pressed = 1;
+    // Get and configure a player
+    if (!hasPlayer())
+        playerIndex = playerMgmt.getPlayer();
+    if (hasPlayer()) // verify if a player was found
+        playerMgmt.p[playerIndex].configure(sample);
+    // else, no player is set and the button won't play anything
 }
 
 void SoundButton::release()
 {
-    if (pressed) // do not release the button if already released ^^
+    pressed = 0;
+    // Free the player
+    if (hasPlayer())
     {
-        pressed = 0;
-        // Free the player
-        if (hasPlayer())
-        {
-            playerMgmt.p[playerIndex].release();
-            playerIndex = -1;
-        }
+        playerMgmt.p[playerIndex].release();
+        playerIndex = -1;
     }
 }
 

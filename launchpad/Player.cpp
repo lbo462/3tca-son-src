@@ -3,11 +3,22 @@
 Player::Player()
 {
     available = 1;
+    playing = 0;
+    period = 1000;
+    startedWaiting = 0; // 0 means the timer did not start
 }
 
 void Player::configure(const unsigned int *sample_)
 {
+    // Reset
+    if (isPlaying())
+        stop();
+    startedWaiting = 0;
+
+    // Configure
     sample = (unsigned int *)sample_;
+
+    // Take possession
     available = 0;
 }
 
@@ -15,7 +26,7 @@ void Player::release()
 {
     if (isPlaying())
         stop();
-    available = 1;
+    available = 1; // make available
 }
 
 int Player::isAvailable()
@@ -26,14 +37,36 @@ int Player::isAvailable()
 void Player::play()
 {
     memPlayer.play(sample);
+    playing = 1;
 }
 
 void Player::stop()
 {
     memPlayer.stop();
+    playing = 0;
+    startedWaiting = 0;
 }
 
 int Player::isPlaying()
 {
-    return memPlayer.isPlaying();
+    return playing;
+}
+
+void Player::update()
+{
+    if (memPlayer.isPlaying())
+        playing = 1;
+    else if (playing)
+    {
+        if (startedWaiting)
+        {
+            if (startedWaiting - millis() > period)
+            {
+                playing = 0;
+                startedWaiting = 0;
+            }
+        }
+        else
+            startedWaiting = millis();
+    }
 }
