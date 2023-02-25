@@ -8,8 +8,8 @@
 class Tab
 {
 public:
-    Tab();
-    void configureSounds(byte pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
+    Tab(byte pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
+    ~Tab();
 
     void update();
 
@@ -19,7 +19,7 @@ public:
     void deactivate();
 
     // TODO make private
-    SoundButton soundButtons[NUMBER_OF_SOUND_BUTTONS];
+    SoundButton *soundButtons = (SoundButton *)malloc(sizeof(SoundButton) * NUMBER_OF_SOUND_BUTTONS);
 
 private:
     int active;

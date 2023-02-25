@@ -13,7 +13,7 @@ TabMgmt::TabMgmt()
         AudioSampleKick,
         AudioSampleKick,
     };
-    tabs[0].configureSounds(pins, samples1);
+    tabs[0] = Tab(pins, samples1);
 
     // Tab 2
     const unsigned int *samples2[NUMBER_OF_SOUND_BUTTONS] = {
@@ -21,7 +21,12 @@ TabMgmt::TabMgmt()
         AudioSampleGong,
         AudioSampleGong,
     };
-    tabs[1].configureSounds(pins, samples2);
+    tabs[1] = Tab(pins, samples2);
+}
+
+TabMgmt::~TabMgmt()
+{
+    free(tabs);
 }
 
 void TabMgmt::nextTab()

@@ -6,10 +6,8 @@
 class SoundButton
 {
 public:
-    SoundButton();
+    SoundButton(byte pin_, const unsigned int *sample_);
     ~SoundButton();
-
-    void configure(byte pin_, const unsigned int *sample_); // configure player filename
 
     /*  Test if the button is pressed and play the song in that case */
     void update();

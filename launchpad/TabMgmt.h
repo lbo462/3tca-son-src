@@ -13,6 +13,7 @@ class TabMgmt
 {
 public:
     TabMgmt();
+    ~TabMgmt();
 
     void nextTab();     // move between tabs
     void previousTab(); //
@@ -22,7 +23,7 @@ public:
     int getTabNumber(); // return current index tab + 1
 
     // TODO make priv
-    Tab tabs[NUMBER_OF_TABS];
+    Tab *tabs = (Tab *)malloc(sizeof(Tab) * NUMBER_OF_TABS);
 
 private:
     int currentTabIndex;
