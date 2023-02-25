@@ -64,6 +64,11 @@ void SoundButton::release()
     }
 }
 
+int SoundButton::getPlayerIndex()
+{
+    return playerIndex;
+}
+
 int SoundButton::hasPlayer()
 {
     return playerIndex != -1;

@@ -13,10 +13,16 @@ public:
 
     void update();
 
+    // tab state
+    int isActive();
+    void activate();
+    void deactivate();
+
     // TODO make private
     SoundButton soundButtons[NUMBER_OF_SOUND_BUTTONS];
 
 private:
+    int active;
 };
 
 #endif

@@ -65,11 +65,9 @@ void loop()
   Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].isPressed());
   Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].isPressed());
   Serial.print(" ");
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[0].playerIndex);
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].playerIndex);
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].playerIndex);
-  Serial.print(" ");
-  Serial.print(playerMgmt.p[0].isAvailable());
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[0].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].getPlayerIndex());
 
   Serial.println();
   delay(100); // required because of Serial.println()

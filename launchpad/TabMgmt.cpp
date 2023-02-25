@@ -25,18 +25,31 @@ TabMgmt::TabMgmt()
 void TabMgmt::nextTab()
 {
     if (currentTabIndex < NUMBER_OF_TABS - 1)
+    {
+        // deactivate previous tab and activate new one
+        tabs[currentTabIndex].deactivate();
         currentTabIndex++;
+        tabs[currentTabIndex].activate();
+    }
 }
 
 void TabMgmt::previousTab()
 {
     if (currentTabIndex > 0)
+    {
+        // deactivate previous tab and activate new one
+        tabs[currentTabIndex].deactivate();
         currentTabIndex--;
+        tabs[currentTabIndex].activate();
+    }
 }
 
 void TabMgmt::update()
 {
-    tabs[currentTabIndex].update();
+    for (int i = 0; i < NUMBER_OF_TABS; i++)
+    {
+        tabs[i].update();
+    }
 }
 
 int TabMgmt::getTabNumber()
