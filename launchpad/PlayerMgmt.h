@@ -10,7 +10,7 @@ class PlayerMgmt
 public:
     PlayerMgmt(Player *players);
 
-    Player *p; // array of every available players
+    Player *p; // array of every players linked by patch cords
 
     int getPlayer(); // returns the index of an available player. Returns -1 if no player is available
     // even if a player is returned, it's not implied that the player will be used

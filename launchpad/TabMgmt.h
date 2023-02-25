@@ -27,6 +27,12 @@ public:
 
 private:
     int currentTabIndex;
+
+    const byte soundPins[NUMBER_OF_SOUND_BUTTONS] = {
+        33,
+        34,
+        35,
+    };
 };
 
 #endif

@@ -1,11 +1,9 @@
+#include "Pins.h"
 #include "TabMgmt.h"
 
 TabMgmt::TabMgmt()
 {
     /* Define tabs here */
-
-    // declare pins
-    byte pins[NUMBER_OF_SOUND_BUTTONS] = {33, 34, 35};
 
     // Tab 1
     const unsigned int *samples1[NUMBER_OF_SOUND_BUTTONS] = {
@@ -13,7 +11,7 @@ TabMgmt::TabMgmt()
         AudioSampleKick,
         AudioSampleKick,
     };
-    tabs[0] = Tab(pins, samples1);
+    tabs[0] = Tab(soundPins, samples1);
 
     // Tab 2
     const unsigned int *samples2[NUMBER_OF_SOUND_BUTTONS] = {
@@ -21,7 +19,7 @@ TabMgmt::TabMgmt()
         AudioSampleGong,
         AudioSampleGong,
     };
-    tabs[1] = Tab(pins, samples2);
+    tabs[1] = Tab(soundPins, samples2);
 }
 
 TabMgmt::~TabMgmt()
