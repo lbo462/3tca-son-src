@@ -13,15 +13,15 @@ public:
     void nextTab();     // move between tabs
     void previousTab(); //
 
-    void update(); // update current tab
+    void update(); // update every tabs
 
     int getTabNumber(); // return current index tab + 1
 
     // TODO make priv
     Tab tabs[NUMBER_OF_TABS];
-    int currentTabIndex;
 
 private:
+    int currentTabIndex;
 };
 
 #endif

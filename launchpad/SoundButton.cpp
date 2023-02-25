@@ -44,7 +44,7 @@ void SoundButton::press()
         // Get and configure a player
         if (!hasPlayer())
             playerIndex = playerMgmt.getPlayer();
-        if (hasPlayer())
+        if (hasPlayer()) // verify if a player was found
             playerMgmt.p[playerIndex].configure(filename);
         // else, no player is set and the button won't play anything
     }

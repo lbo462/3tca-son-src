@@ -2,6 +2,8 @@
 
 TabMgmt::TabMgmt()
 {
+    /* Define tabs here */
+
     // declare pins
     byte pins[NUMBER_OF_SOUND_BUTTONS] = {33, 34, 35};
 

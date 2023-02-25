@@ -17,12 +17,14 @@
 // output and audio shield
 AudioControlSGTL5000 audioShield;
 
+// Tab manager to manage everything (wow)
 TabMgmt tabMgmt;
 
 void setup()
 {
   Serial.begin(9600);
 
+  // Try to read SD card
   while (!(SD.begin(SDCARD_CS_PIN)))
   {
     Serial.println("Unable to access the SD card");
@@ -50,25 +52,28 @@ void setup()
 
 void loop()
 {
+  // Check tab swap
   if (digitalRead(NEXT_TAB_PIN))
     tabMgmt.nextTab();
   if (digitalRead(PREV_TAB_PIN))
     tabMgmt.previousTab();
 
-  tabMgmt.update();
-
+  // Print current tab to console
   Serial.print("Tab #");
   Serial.print(tabMgmt.getTabNumber());
   Serial.print(" ");
 
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[0].isPressed());
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].isPressed());
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].isPressed());
+  tabMgmt.update(); // update current frame
+
+  // Debug output
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[0].isPressed());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[1].isPressed());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[2].isPressed());
   Serial.print(" ");
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[0].getPlayerIndex());
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[1].getPlayerIndex());
-  Serial.print(tabMgmt.tabs[tabMgmt.currentTabIndex].soundButtons[2].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[0].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[1].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[2].getPlayerIndex());
 
   Serial.println();
-  delay(100); // required because of Serial.println()
+  delay(100); // required because of Serial.println() and tab swapping !!
 }
