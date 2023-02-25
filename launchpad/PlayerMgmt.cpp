@@ -59,32 +59,31 @@ AudioConnection patchCord42(mixer10, 0, mixer11, 1);
 AudioConnection patchCord43(mixer11, 0, out, 0);
 AudioConnection patchCord44(mixer11, 0, out, 1);
 
-void setupGain()
-{
-    // set gain to 1 on every mixer outputs
-    for (int i = 0; i < 4; i++)
-    {
-        mixer1.gain(i, 1);
-        mixer2.gain(i, 1);
-        mixer3.gain(i, 1);
-        mixer4.gain(i, 1);
-        mixer5.gain(i, 1);
-        mixer6.gain(i, 1);
-        mixer7.gain(i, 1);
-        mixer8.gain(i, 1);
-        mixer9.gain(i, 1);
-        mixer10.gain(i, 1);
-    }
-
-    // maybe will change
-    mixer11.gain(0, 1);
-    mixer11.gain(1, 1);
-}
-
-// define PlayerMgmt methods
 PlayerMgmt::PlayerMgmt(Player *players)
 {
     p = players;
+}
+
+void PlayerMgmt::setGain(float gain_)
+{
+    // set gain on every mixer outputs
+    for (int i = 0; i < 4; i++)
+    {
+        mixer1.gain(i, gain_);
+        mixer2.gain(i, gain_);
+        mixer3.gain(i, gain_);
+        mixer4.gain(i, gain_);
+        mixer5.gain(i, gain_);
+        mixer6.gain(i, gain_);
+        mixer7.gain(i, gain_);
+        mixer8.gain(i, gain_);
+        mixer9.gain(i, gain_);
+        mixer10.gain(i, gain_);
+    }
+
+    // will change ? @gausse
+    mixer11.gain(0, 1);
+    mixer11.gain(1, 1);
 }
 
 int PlayerMgmt::getPlayer()

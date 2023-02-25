@@ -40,7 +40,7 @@ void setup()
   audioShield.enable();
   audioShield.volume(1);
 
-  setupGain();
+  playerMgmt.setGain(0.5);
 
   Serial.println("Setup done.");
 
@@ -49,6 +49,15 @@ void setup()
 
 void loop()
 {
+  // Compute and set gain
+  int gain = map(analogRead(GAIN_PIN), 0, 1023, 0, 1);
+  playerMgmt.setGain(gain);
+
+  // Print current volume to console
+  Serial.print("Volume ");
+  Serial.print(gain * 100);
+  Serial.print("% ");
+
   // Check tab swap
   if (digitalRead(NEXT_TAB_PIN))
     tabMgmt.nextTab();
