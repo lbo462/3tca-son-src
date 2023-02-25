@@ -4,8 +4,7 @@
 #include "Tab.h"
 
 // include samples
-#include "AudioSampleKick.h"
-#include "AudioSampleGong.h"
+#include "Samples.h"
 
 #define NUMBER_OF_TABS 2
 

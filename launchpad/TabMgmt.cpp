@@ -6,20 +6,10 @@ TabMgmt::TabMgmt()
     /* Define tabs here */
 
     // Tab 1
-    const unsigned int *samples1[NUMBER_OF_SOUND_BUTTONS] = {
-        AudioSampleKick,
-        AudioSampleKick,
-        AudioSampleKick,
-    };
-    tabs[0] = Tab(soundPins, samples1);
+    tabs[0] = Tab(soundPins, generators);
 
     // Tab 2
-    const unsigned int *samples2[NUMBER_OF_SOUND_BUTTONS] = {
-        AudioSampleGong,
-        AudioSampleGong,
-        AudioSampleGong,
-    };
-    tabs[1] = Tab(soundPins, samples2);
+    tabs[1] = Tab(soundPins, musics);
 }
 
 TabMgmt::~TabMgmt()
