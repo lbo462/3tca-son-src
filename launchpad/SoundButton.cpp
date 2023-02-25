@@ -1,6 +1,9 @@
 #include "Pins.h"
 #include "SoundButton.h"
 
+#define MAX_DELAY 10000
+#define MIN_DELAY 100
+
 SoundButton::SoundButton(byte pin_, const unsigned int *sample_)
 {
     pin = pin_;
@@ -40,7 +43,7 @@ void SoundButton::press()
 
     // Retrieve current delay
     int analogReadFromPot = analogRead(SET_FREQ_PIN);
-    unsigned int period = 1000;
+    unsigned int period = map(analogReadFromPot, 0, 1023, MIN_DELAY, MAX_DELAY);
 
     // Get and configure a player
     if (!hasPlayer())
