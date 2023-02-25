@@ -8,6 +8,9 @@
 // Pin for frequency modulation
 #define SET_FREQ_PIN 3
 
+// Pin for gain modulation
+#define GAIN_PIN 4
+
 /* Pins for sound buttons are defined inside `TabMgmt.cpp`:soundPins */
 
 #endif
