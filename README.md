@@ -33,6 +33,10 @@ With above configuration, you should be able to read and write in this repo.
 
 ## Electrical circuit
 
-Current circuit is a row of 3 buttons linked to a single analogical output (A0).
+Current circuit is three buttons linked to digital pins 33, 34 and 35 on Teensy 4.1
 
-The resistances we use are 320, 450 and 230 Ohms.
+Tabs can be changed via pins 0 and 1 (defined in ``lauchnpad.ino``)
+
+## Tabs configuring
+
+Tabs are defined in ``TabMgmt.cpp``. Pins and sounds can be changed there.

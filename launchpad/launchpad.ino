@@ -3,22 +3,28 @@
 #include <SD.h>
 #include <SerialFlash.h>
 
-#include "SoundButtonRow.h"
+#include "TabMgmt.h"
+
+// Define pins for tab swapping
+#define NEXT_TAB_PIN 0
+#define PREV_TAB_PIN 1
 
 // SD Card reading
-#define SDCARD_CS_PIN 10
+#define SDCARD_CS_PIN BUILTIN_SDCARD
 #define SDCARD_MOSI_PIN 11 // not actually used
 #define SDCARD_SCK_PIN 13  // not actually used
 
 // output and audio shield
 AudioControlSGTL5000 audioShield;
 
-SoundButtonRow soundButtonRow;
+// Tab manager to manage everything (wow)
+TabMgmt tabMgmt;
 
 void setup()
 {
   Serial.begin(9600);
 
+  // Try to read SD card
   while (!(SD.begin(SDCARD_CS_PIN)))
   {
     Serial.println("Unable to access the SD card");
@@ -39,10 +45,6 @@ void setup()
 
   setupGain();
 
-  // configure buttons with filenames and pins
-  char *filenames[ROW_LEN] = {"MESSAGE.WAV", "MESSAGE.WAV", "MESSAGE.WAV"};
-  soundButtonRow.configure(A0, filenames);
-
   Serial.println("Setup done.");
 
   delay(500);
@@ -50,22 +52,28 @@ void setup()
 
 void loop()
 {
-  // Read inputs
-  Serial.print(analogRead(A0));
+  // Check tab swap
+  if (digitalRead(NEXT_TAB_PIN))
+    tabMgmt.nextTab();
+  if (digitalRead(PREV_TAB_PIN))
+    tabMgmt.previousTab();
 
-  soundButtonRow.update();
+  // Print current tab to console
+  Serial.print("Tab #");
+  Serial.print(tabMgmt.getTabNumber());
+  Serial.print(" ");
 
+  tabMgmt.update(); // update current frame
+
+  // Debug output
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[0].isPressed());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[1].isPressed());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[2].isPressed());
   Serial.print(" ");
-  Serial.print(soundButtonRow.buttons[0].isPressed());
-  Serial.print(soundButtonRow.buttons[1].isPressed());
-  Serial.print(soundButtonRow.buttons[2].isPressed());
-  Serial.print(" ");
-  Serial.print(soundButtonRow.buttons[0].playerIndex);
-  Serial.print(soundButtonRow.buttons[1].playerIndex);
-  Serial.print(soundButtonRow.buttons[2].playerIndex);
-  Serial.print(" ");
-  Serial.print(playerMgmt.p[0].isAvailable());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[0].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[1].getPlayerIndex());
+  Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[2].getPlayerIndex());
 
   Serial.println();
-  delay(100); // required because of Serial.println()
+  delay(100); // required because of Serial.println() and tab swapping !!
 }
