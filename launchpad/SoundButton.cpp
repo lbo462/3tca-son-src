@@ -36,11 +36,15 @@ void SoundButton::update()
 void SoundButton::press()
 {
     pressed = 1;
+
+    // Retrieve current delay
+    unsigned int period = 1000;
+
     // Get and configure a player
     if (!hasPlayer())
         playerIndex = playerMgmt.getPlayer();
     if (hasPlayer()) // verify if a player was found
-        playerMgmt.p[playerIndex].configure(sample);
+        playerMgmt.p[playerIndex].configure(sample, period);
     // else, no player is set and the button won't play anything
 }
 

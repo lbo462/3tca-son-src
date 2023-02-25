@@ -8,7 +8,7 @@ Player::Player()
     startedWaiting = 0; // 0 means the timer did not start
 }
 
-void Player::configure(const unsigned int *sample_)
+void Player::configure(const unsigned int *sample_, unsigned int period_)
 {
     // Reset
     if (isPlaying())
@@ -17,6 +17,7 @@ void Player::configure(const unsigned int *sample_)
 
     // Configure
     sample = (unsigned int *)sample_;
+    period = period_;
 
     // Take possession
     available = 0;
