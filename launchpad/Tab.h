@@ -8,7 +8,7 @@
 class Tab
 {
 public:
-    Tab(byte pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
+    Tab(const byte pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
     ~Tab();
 
     void update();

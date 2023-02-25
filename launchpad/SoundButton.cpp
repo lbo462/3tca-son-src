@@ -1,3 +1,4 @@
+#include "Pins.h"
 #include "SoundButton.h"
 
 SoundButton::SoundButton(byte pin_, const unsigned int *sample_)
@@ -38,6 +39,7 @@ void SoundButton::press()
     pressed = 1;
 
     // Retrieve current delay
+    int analogReadFromPot = analogRead(SET_FREQ_PIN);
     unsigned int period = 1000;
 
     // Get and configure a player
