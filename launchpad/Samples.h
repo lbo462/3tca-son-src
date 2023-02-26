@@ -1,9 +1,8 @@
 #ifndef samples_teensy_h
 #define samples_teensy_h
 
-//TabMgmt should include this file to access a set samples for a tab, each tab has a diffent set of samples
-
-#include "samples/AllSamples.h"
+// TabMgmt should include this file to access a set samples for a tab, each tab has a diffent set of samples
+#include "src/samples/AllSamples.h"
 
 extern const unsigned int *generators[];
 
