@@ -34,12 +34,6 @@ void loop()
   Serial.print(gain * 100);
   Serial.print("% ");
 
-  // Check tab swap
-  if (digitalRead(NEXT_TAB_PIN))
-    tabMgmt.nextTab();
-  if (digitalRead(PREV_TAB_PIN))
-    tabMgmt.previousTab();
-
   // Print current tab to console
   Serial.print("Tab #");
   Serial.print(tabMgmt.getTabNumber());

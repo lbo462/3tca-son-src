@@ -40,10 +40,15 @@ void TabMgmt::previousTab()
 
 void TabMgmt::update()
 {
+    // Swap tab
+    if (digitalRead(NEXT_TAB_PIN))
+        nextTab();
+    if (digitalRead(PREV_TAB_PIN))
+        previousTab();
+
+    // Update every tabs
     for (int i = 0; i < NUMBER_OF_TABS; i++)
-    {
         tabs[i].update();
-    }
 }
 
 int TabMgmt::getTabNumber()
