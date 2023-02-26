@@ -9,6 +9,7 @@ SoundButton::SoundButton(byte pin_, const unsigned int *sample_)
     sample = sample_;
     pressed = 0;
     playerIndex = -1; // index -1 implies that no player is set
+    keepPressed = 0;
 }
 
 SoundButton::~SoundButton()
@@ -22,11 +23,16 @@ void SoundButton::update()
     /*
         /!\ Should be called at each frame /!\
         Play sound if button is pressed
+        Keep playing if register button was pushed
     */
-    if (digitalRead(pin) && !pressed)
+    if (digitalRead(pin))
         press();
-    else if (pressed)
+    else if (pressed && !keepPressed)
         release();
+
+    if (digitalRead(REGISTER_PIN))
+        if (pressed)
+            keepPressed = 1;
 
     if (pressed && hasPlayer())
     {
@@ -38,18 +44,23 @@ void SoundButton::update()
 
 void SoundButton::press()
 {
-    pressed = 1;
+    if (!keepPressed && !pressed)
+    {
+        pressed = 1;
 
-    // Retrieve current delay
-    int analogReadFromPot = analogRead(SET_FREQ_PIN);
-    unsigned int period = map(analogReadFromPot, 0, 1023, MIN_DELAY, MAX_DELAY);
+        // Retrieve current delay
+        int analogReadFromPot = analogRead(SET_FREQ_PIN);
+        unsigned int period = map(analogReadFromPot, 0, 1023, MIN_DELAY, MAX_DELAY);
 
-    // Get and configure a player
-    if (!hasPlayer())
-        playerIndex = playerMgmt.getPlayer();
-    if (hasPlayer()) // verify if a player was found
-        playerMgmt.p[playerIndex].configure(sample, period);
-    // else, no player is set and the button won't play anything
+        // Get and configure a player
+        if (!hasPlayer())
+            playerIndex = playerMgmt.getPlayer();
+        if (hasPlayer()) // verify if a player was found
+            playerMgmt.p[playerIndex].configure(sample, period);
+        // else, no player is set and the button won't play anything
+    }
+    else if (keepPressed)
+        keepPressed = 0;
 }
 
 void SoundButton::release()

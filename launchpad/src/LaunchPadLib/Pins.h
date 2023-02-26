@@ -11,6 +11,9 @@
 // Pin for gain modulation
 #define GAIN_PIN 4
 
+// Pin for register button
+#define REGISTER_PIN 5
+
 /* Pins for sound buttons are defined inside `TabMgmt.cpp`:soundPins */
 
 #endif
