@@ -1,6 +1,7 @@
 #ifndef soundbutton_teensy_h_
 #define soundbutton_teensy_h_
 
+#include "Pins.h"
 #include "PlayerMgmt.h"
 
 class SoundButton

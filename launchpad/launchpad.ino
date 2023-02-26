@@ -1,5 +1,4 @@
-#include "Pins.h"
-#include "TabMgmt.h"
+#include "src/LaunchpadLib/LaunchPad.h"
 
 // output and audio shield
 AudioControlSGTL5000 audioShield;

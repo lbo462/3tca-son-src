@@ -1,4 +1,3 @@
-#include "Pins.h"
 #include "SoundButton.h"
 
 #define MAX_DELAY 10000
