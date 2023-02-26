@@ -1,15 +1,4 @@
-#include <Wire.h>
-#include <SPI.h>
-#include <SD.h>
-#include <SerialFlash.h>
-
-#include "Pins.h"
-#include "TabMgmt.h"
-
-// SD Card reading
-#define SDCARD_CS_PIN BUILTIN_SDCARD
-#define SDCARD_MOSI_PIN 11 // not actually used
-#define SDCARD_SCK_PIN 13  // not actually used
+#include "src/LaunchPadLib/LaunchPad.h"
 
 // output and audio shield
 AudioControlSGTL5000 audioShield;
@@ -20,19 +9,6 @@ TabMgmt tabMgmt;
 void setup()
 {
   Serial.begin(9600);
-
-  // Try to read SD card
-  while (!(SD.begin(SDCARD_CS_PIN)))
-  {
-    Serial.println("Unable to access the SD card");
-    delay(1000);
-  }
-
-  // SD card reading
-  SPI.setMOSI(SDCARD_MOSI_PIN);
-  SPI.setSCK(SDCARD_SCK_PIN);
-
-  Serial.println("Able to access SD Card.");
 
   // Audio settings
   Serial.println("Configuring audio shield ...");
@@ -50,19 +26,13 @@ void setup()
 void loop()
 {
   // Compute and set gain
-  int gain = map(analogRead(GAIN_PIN), 0, 1023, 0, 1);
+  float gain = map(analogRead(GAIN_PIN), 0, 1023, 0, 1);
   playerMgmt.setGain(gain);
 
   // Print current volume to console
   Serial.print("Volume ");
   Serial.print(gain * 100);
   Serial.print("% ");
-
-  // Check tab swap
-  if (digitalRead(NEXT_TAB_PIN))
-    tabMgmt.nextTab();
-  if (digitalRead(PREV_TAB_PIN))
-    tabMgmt.previousTab();
 
   // Print current tab to console
   Serial.print("Tab #");
@@ -81,5 +51,25 @@ void loop()
   Serial.print(tabMgmt.tabs[tabMgmt.getTabNumber() - 1].soundButtons[2].getPlayerIndex());
 
   Serial.println();
+
+  // debugging without hardware from the serial monitor
+  String command;
+  if (Serial.available())
+  {
+    command = Serial.readStringUntil('\n');
+    if (command.indexOf("dw") >= 0)
+    {
+      digitalWrite(command[2], HIGH);
+    }
+    else if (command.indexOf("aw") >= 0)
+    {
+      analogWrite(command[2], command.substring(3, command.length()).toInt());
+    }
+    else
+    {
+      Serial.println("Invalid command");
+    }
+  }
+
   delay(100); // required because of Serial.println() and tab swapping !!
 }
