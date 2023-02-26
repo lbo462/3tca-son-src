@@ -1,6 +1,6 @@
 // Audio data converted from audio file by wav2sketch_js
 
-#include "AudioSampleSawtooh2.h"
+#include "AudioSampleSawtooth2.h"
 
 // Converted from sawtooh2.wav, using 44100 Hz, 16 bit u-law encoding
 PROGMEM

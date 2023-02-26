@@ -9,7 +9,7 @@ TabMgmt::TabMgmt()
     tabs[0] = Tab(soundPins, generators);
 
     // Tab 2
-    tabs[1] = Tab(soundPins, musics);
+    tabs[1] = Tab(soundPins, soundeffects);
 }
 
 TabMgmt::~TabMgmt()

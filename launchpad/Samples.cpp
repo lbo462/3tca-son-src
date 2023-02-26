@@ -12,8 +12,8 @@ const unsigned int *instruments[] = {AudioSampleBrass1, AudioSampleBrass2
                                     };
 
 
-const unsigned int *soundeffects[] = {AudioSampleGong, AudioSampleKick
-                                  };
+const unsigned int *soundeffects[] = {AudioSampleGong, AudioSampleKick, AudioSampleMessage
+                                     };
 
 
 const unsigned int *musics[] = {AudioSampleSdtest1
