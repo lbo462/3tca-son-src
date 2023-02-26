@@ -2,8 +2,6 @@
 #define tabmgmt_teensy_h_
 
 #include "Tab.h"
-
-// include samples
 #include "Samples.h"
 
 #define NUMBER_OF_TABS 2

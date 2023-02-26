@@ -1,4 +1,4 @@
-#include "src/LaunchpadLib/LaunchPad.h"
+#include "src/LaunchPadLib/LaunchPad.h"
 
 // output and audio shield
 AudioControlSGTL5000 audioShield;
@@ -26,7 +26,7 @@ void setup()
 void loop()
 {
   // Compute and set gain
-  int gain = map(analogRead(GAIN_PIN), 0, 1023, 0, 1);
+  float gain = map(analogRead(GAIN_PIN), 0, 1023, 0, 1);
   playerMgmt.setGain(gain);
 
   // Print current volume to console
