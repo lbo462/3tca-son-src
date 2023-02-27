@@ -2,18 +2,33 @@
 
 TabMgmt::TabMgmt()
 {
-    /* Define tabs here */
-
-    // Tab 1
-    tabs[0] = Tab(soundPins, generators);
-
-    // Tab 2
-    tabs[1] = Tab(soundPins, soundeffects);
+    /* Function constructor is moved to the method configure()
+        This is not for no reason, please, leave it that way
+        It should be called during setup
+     */
 }
 
 TabMgmt::~TabMgmt()
 {
     free(tabs);
+}
+
+void TabMgmt::configure()
+{
+    /* Define tabs here */
+
+    // Tab 1
+    tabs[0] = Tab(soundPins, soundsTest);
+
+    // Tab 2
+    tabs[1] = Tab(soundPins, generators);
+
+    // Tab 3
+    tabs[2] = Tab(soundPins, instruments);
+
+    // activate first tab
+    currentTabIndex = 0;
+    tabs[currentTabIndex].activate();
 }
 
 void TabMgmt::nextTab()

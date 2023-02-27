@@ -4,13 +4,15 @@
 #include "Tab.h"
 #include "Samples.h"
 
-#define NUMBER_OF_TABS 2
+#define NUMBER_OF_TABS 3
 
 class TabMgmt
 {
 public:
     TabMgmt();
     ~TabMgmt();
+
+    void configure();
 
     void nextTab();     // move between tabs
     void previousTab(); //
@@ -19,13 +21,11 @@ public:
 
     int getTabNumber(); // return current index tab + 1
 
-    // TODO make priv
-    Tab *tabs = (Tab *)malloc(sizeof(Tab) * NUMBER_OF_TABS);
-
 private:
     int currentTabIndex;
+    Tab *tabs = (Tab *)malloc(sizeof(Tab) * NUMBER_OF_TABS);
 
-    const byte soundPins[NUMBER_OF_SOUND_BUTTONS] = {
+    const int soundPins[NUMBER_OF_SOUND_BUTTONS] = {
         33,
         34,
         35,
