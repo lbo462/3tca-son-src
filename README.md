@@ -24,7 +24,7 @@ Pins for the audio output are defined in `TabMgmt.h:soundPins`.
 
 Samples are sets of hex values converted from WAV files. Samples are stored inside `Samples`.
 
-Samples sets are defined in `Samples.h`. Their association with tabs are defined in `TabMgmt.cpp`.
+Samples sets are defined in `Samples.h`. Their association with tabs are defined in `TabMgmt.cpp:configure`.
 
 <hr>
 

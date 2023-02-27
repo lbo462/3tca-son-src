@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Samples/AudioSampleKick.h"
 
 Player::Player()
 {
@@ -37,7 +38,7 @@ int Player::isAvailable()
 
 void Player::play()
 {
-    memPlayer.play(sample);
+    memPlayer.play(AudioSampleKick); // TODO change lol
     playing = 1;
 }
 

@@ -2,6 +2,23 @@
 
 TabMgmt::TabMgmt()
 {
+    /* Function constructor is moved to the method configure()
+        This is not for no reason, please, leave it that way
+        It should be called during setup
+     */
+
+    // TODO remove when button are connected
+    digitalWrite(PREV_TAB_PIN, LOW);
+    digitalWrite(NEXT_TAB_PIN, LOW);
+}
+
+TabMgmt::~TabMgmt()
+{
+    free(tabs);
+}
+
+void TabMgmt::configure()
+{
     /* Define tabs here */
 
     // Tab 1
@@ -9,11 +26,10 @@ TabMgmt::TabMgmt()
 
     // Tab 2
     tabs[1] = Tab(soundPins, soundeffects);
-}
 
-TabMgmt::~TabMgmt()
-{
-    free(tabs);
+    // activate first tab
+    currentTabIndex = 0;
+    tabs[0].activate();
 }
 
 void TabMgmt::nextTab()

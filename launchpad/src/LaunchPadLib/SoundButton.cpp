@@ -3,12 +3,12 @@
 #define MAX_DELAY 10000
 #define MIN_DELAY 100
 
-SoundButton::SoundButton(byte pin_, const unsigned int *sample_)
+SoundButton::SoundButton(int pin_, const unsigned int *sample_)
 {
     pin = pin_;
     sample = sample_;
     pressed = 0;
-    playerIndex = -1; // index -1 implies that no player is set
+    playerIndex = 0; // index -1 implies that no player is set
     keepPressed = 0;
 }
 
@@ -70,7 +70,7 @@ void SoundButton::release()
     if (hasPlayer())
     {
         playerMgmt.p[playerIndex].release();
-        playerIndex = -1;
+        // playerIndex = -1;
     }
 }
 
