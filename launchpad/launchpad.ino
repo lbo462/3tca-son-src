@@ -5,6 +5,7 @@ AudioControlSGTL5000 audioShield;
 
 // Tab manager to manage everything (wow)
 TabMgmt tabMgmt = TabMgmt();
+LCD lcd = LCD();
 
 void setup()
 {
@@ -43,6 +44,10 @@ void loop()
   tabMgmt.update(); // update current frame
 
   Serial.println();
+
+  //lcd display
+  lcd.setData(gain, tabMgmt.getTabNumber());
+  lcd.update();
 
   delay(120); // required because of tab swapping !!
 }
