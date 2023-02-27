@@ -18,17 +18,17 @@ void TabMgmt::configure()
     /* Define tabs here */
 
     // Tab 1
-    tabs[0] = Tab(soundPins, soundsTest);
+    tabs[0] = new Tab(soundPins, soundsTest);
 
     // Tab 2
-    tabs[1] = Tab(soundPins, generators);
+    tabs[1] = new Tab(soundPins, generators);
 
     // Tab 3
-    tabs[2] = Tab(soundPins, instruments);
+    tabs[2] = new Tab(soundPins, instruments);
 
     // activate first tab
     currentTabIndex = 0;
-    tabs[currentTabIndex].activate();
+    tabs[currentTabIndex]->activate();
 }
 
 void TabMgmt::nextTab()
@@ -36,9 +36,9 @@ void TabMgmt::nextTab()
     if (currentTabIndex < NUMBER_OF_TABS - 1)
     {
         // deactivate previous tab and activate new one
-        tabs[currentTabIndex].deactivate();
+        tabs[currentTabIndex]->deactivate();
         currentTabIndex++;
-        tabs[currentTabIndex].activate();
+        tabs[currentTabIndex]->activate();
     }
 }
 
@@ -47,9 +47,9 @@ void TabMgmt::previousTab()
     if (currentTabIndex > 0)
     {
         // deactivate previous tab and activate new one
-        tabs[currentTabIndex].deactivate();
+        tabs[currentTabIndex]->deactivate();
         currentTabIndex--;
-        tabs[currentTabIndex].activate();
+        tabs[currentTabIndex]->activate();
     }
 }
 
@@ -63,7 +63,7 @@ void TabMgmt::update()
 
     // Update every tabs
     for (int i = 0; i < NUMBER_OF_TABS; i++)
-        tabs[i].update();
+        tabs[i]->update();
 }
 
 int TabMgmt::getTabNumber()
