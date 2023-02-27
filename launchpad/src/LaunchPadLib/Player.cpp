@@ -1,5 +1,4 @@
 #include "Player.h"
-#include "Samples/AudioSampleKick.h"
 
 Player::Player()
 {
