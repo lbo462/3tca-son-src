@@ -23,7 +23,8 @@ public:
 
 private:
     int currentTabIndex;
-    Tab *tabs = (Tab *)malloc(sizeof(Tab) * NUMBER_OF_TABS);
+    // Tab *tabs = (Tab *)malloc(sizeof(Tab) * NUMBER_OF_TABS);
+    Tab *tabs[NUMBER_OF_TABS];
 
     const int soundPins[NUMBER_OF_SOUND_BUTTONS] = {
         33,
