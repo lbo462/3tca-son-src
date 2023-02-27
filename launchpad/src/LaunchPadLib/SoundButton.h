@@ -22,9 +22,9 @@ public:
 private:
     const unsigned int *sample;
     int pin;
-    int pressed;         // Button pressed boolean
-    int playerIndex = 0; // index of the audio player
-    int keepPressed;     // button should stay pressed even if released
+    int pressed;     // Button pressed boolean
+    int playerIndex; // index of the audio player
+    int keepPressed; // button should stay pressed even if released
 
     int hasPlayer(); // returns true if a player is set
 };

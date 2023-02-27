@@ -38,7 +38,7 @@ int Player::isAvailable()
 
 void Player::play()
 {
-    memPlayer.play(AudioSampleKick); // TODO change lol
+    memPlayer.play(sample);
     playing = 1;
 }
 

@@ -8,7 +8,7 @@ SoundButton::SoundButton(int pin_, const unsigned int *sample_)
     pin = pin_;
     sample = sample_;
     pressed = 0;
-    playerIndex = 0; // index -1 implies that no player is set
+    playerIndex = -1; // index -1 implies that no player is set
     keepPressed = 0;
 }
 
