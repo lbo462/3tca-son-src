@@ -40,6 +40,12 @@ void TabMgmt::nextTab()
         currentTabIndex++;
         tabs[currentTabIndex]->activate();
     }
+    else
+    {
+        tabs[currentTabIndex]->deactivate();
+        currentTabIndex = 0;
+        tabs[currentTabIndex]->activate();
+    }
 }
 
 void TabMgmt::previousTab()
@@ -49,6 +55,12 @@ void TabMgmt::previousTab()
         // deactivate previous tab and activate new one
         tabs[currentTabIndex]->deactivate();
         currentTabIndex--;
+        tabs[currentTabIndex]->activate();
+    }
+    else
+    {
+        tabs[currentTabIndex]->deactivate();
+        currentTabIndex = NUMBER_OF_TABS - 1;
         tabs[currentTabIndex]->activate();
     }
 }

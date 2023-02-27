@@ -4,7 +4,7 @@
 
 const unsigned int *soundsTest[] = {
     AudioSampleSdtest1,
-    AudioSampleBrass1,
+    AudioSampleSineslide,
     AudioSampleKick,
 
 };
