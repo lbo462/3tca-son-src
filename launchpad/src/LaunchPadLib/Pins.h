@@ -2,8 +2,8 @@
 #define pins_teensy_h_
 
 // Define pins for tab swapping
-#define NEXT_TAB_PIN 0
-#define PREV_TAB_PIN 1
+#define NEXT_TAB_PIN 30
+#define PREV_TAB_PIN 29
 
 // Pin for frequency modulation
 #define SET_FREQ_PIN 24

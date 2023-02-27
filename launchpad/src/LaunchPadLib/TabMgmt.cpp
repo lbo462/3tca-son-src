@@ -6,10 +6,6 @@ TabMgmt::TabMgmt()
         This is not for no reason, please, leave it that way
         It should be called during setup
      */
-
-    // TODO remove when button are connected
-    digitalWrite(PREV_TAB_PIN, LOW);
-    digitalWrite(NEXT_TAB_PIN, LOW);
 }
 
 TabMgmt::~TabMgmt()
@@ -22,14 +18,17 @@ void TabMgmt::configure()
     /* Define tabs here */
 
     // Tab 1
-    tabs[0] = Tab(soundPins, generators);
+    tabs[0] = Tab(soundPins, soundsTest);
 
     // Tab 2
-    tabs[1] = Tab(soundPins, soundeffects);
+    tabs[1] = Tab(soundPins, generators);
+
+    // Tab 3
+    tabs[2] = Tab(soundPins, instruments);
 
     // activate first tab
     currentTabIndex = 0;
-    tabs[0].activate();
+    tabs[currentTabIndex].activate();
 }
 
 void TabMgmt::nextTab()

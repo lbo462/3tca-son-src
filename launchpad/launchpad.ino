@@ -44,5 +44,5 @@ void loop()
 
   Serial.println();
 
-  delay(100); // required because of Serial.println() and tab swapping !!
+  delay(120); // required because of tab swapping !!
 }

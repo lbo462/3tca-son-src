@@ -4,7 +4,7 @@
 #include "Tab.h"
 #include "Samples.h"
 
-#define NUMBER_OF_TABS 2
+#define NUMBER_OF_TABS 3
 
 class TabMgmt
 {

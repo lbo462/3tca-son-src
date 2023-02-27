@@ -54,10 +54,16 @@ void SoundButton::press()
 
         // Get and configure a player
         if (!hasPlayer())
+        {
             playerIndex = playerMgmt.getPlayer();
-        if (hasPlayer()) // verify if a player was found
-            playerMgmt.p[playerIndex].configure(sample, period);
-        // else, no player is set and the button won't play anything
+            if (hasPlayer()) // verify if a player was found
+                playerMgmt.p[playerIndex].configure(sample, period);
+            // else, no player is set and the button won't play anything
+
+            Serial.print("Player #");
+            Serial.print(playerIndex);
+            Serial.print(" in use ");
+        }
     }
     else if (keepPressed)
         keepPressed = 0;
