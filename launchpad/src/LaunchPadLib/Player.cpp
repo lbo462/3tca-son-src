@@ -61,13 +61,15 @@ void Player::update()
     {
         if (startedWaiting)
         {
-            if (startedWaiting - millis() > period)
+            if (millis() - startedWaiting > period)
             {
                 playing = 0;
                 startedWaiting = 0;
             }
         }
         else
+        {
             startedWaiting = millis();
+        }
     }
 }
