@@ -40,3 +40,10 @@ const unsigned int *musics[] = {
     AudioSampleBrass2,
     AudioSampleSdtest1,
 };
+
+const unsigned int *kicks[] = {
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+
+};

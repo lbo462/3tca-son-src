@@ -18,7 +18,7 @@ void TabMgmt::configure()
     /* Define tabs here */
 
     // Tab 1
-    tabs[0] = new Tab(soundPins, soundsTest);
+    tabs[0] = new Tab(soundPins, kicks);
 
     // Tab 2
     tabs[1] = new Tab(soundPins, generators);

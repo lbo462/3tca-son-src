@@ -1,8 +1,5 @@
 #include "SoundButton.h"
 
-#define MAX_DELAY 10000
-#define MIN_DELAY 100
-
 SoundButton::SoundButton(int pin_, const unsigned int *sample_)
 {
     pin = pin_;
