@@ -34,6 +34,16 @@ void SoundButton::update()
             keepPressed = 1;
     }
 
+    // Reset button if playing
+    if (keepPressed)
+    {
+        if (digitalRead(RESET_PIN))
+        {
+            keepPressed = 0;
+            release();
+        }
+    }
+
     if ((pressed || keepPressed) && hasPlayer())
     {
         playerMgmt.p[playerIndex].update(); // update timer

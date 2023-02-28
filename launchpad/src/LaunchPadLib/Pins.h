@@ -14,6 +14,9 @@
 // Pin for register button
 #define REGISTER_PIN 32
 
+// Reset button
+#define RESET_PIN 31
+
 // Pins for LCD display
 #define LCD_RS 12
 #define LCD_EN 11
