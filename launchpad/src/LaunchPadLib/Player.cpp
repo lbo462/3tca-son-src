@@ -21,6 +21,10 @@ void Player::configure(const unsigned int *sample_, unsigned int period_)
 
     // Take possession
     available = 0;
+
+    Serial.print("delay = ");
+    Serial.print(period);
+    Serial.print(" ");
 }
 
 void Player::release()
@@ -68,8 +72,6 @@ void Player::update()
             }
         }
         else
-        {
             startedWaiting = millis();
-        }
     }
 }

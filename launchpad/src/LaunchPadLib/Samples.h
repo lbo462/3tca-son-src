@@ -9,5 +9,6 @@ extern const unsigned int *generators[];
 extern const unsigned int *instruments[];
 extern const unsigned int *soundeffects[];
 extern const unsigned int *musics[];
+extern const unsigned int *kicks[];
 
 #endif
