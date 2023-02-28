@@ -15,9 +15,8 @@ Tab::~Tab()
 
 void Tab::update()
 {
-    if (active)
-        for (int i = 0; i < NUMBER_OF_SOUND_BUTTONS; i++)
-            soundButtons[i].update();
+    for (int i = 0; i < NUMBER_OF_SOUND_BUTTONS; i++)
+        soundButtons[i].update();
 }
 
 int Tab::isActive()
@@ -28,9 +27,13 @@ int Tab::isActive()
 void Tab::activate()
 {
     active = 1;
+    for (int i = 0; i < NUMBER_OF_SOUND_BUTTONS; i++)
+        soundButtons[i].activate();
 }
 
 void Tab::deactivate()
 {
     active = 0;
+    for (int i = 0; i < NUMBER_OF_SOUND_BUTTONS; i++)
+        soundButtons[i].deactivate();
 }
