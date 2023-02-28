@@ -24,10 +24,10 @@ public:
 
 private:
     int available;
-    int playing; // boolean telling if sound is playing after applying below delay
+    int playing; // boolean telling if sound is playing after applying delay
     unsigned int *sample;
     unsigned int period;          // frequency at which the song is played (in ms)
-    unsigned long startedWaiting; // time at which the above delay was triggered
+    unsigned long startedWaiting; // time at which the delay was triggered
     // if == 0 the timer didn't start
     // it allows doing things like :
     // if (!startedWaiting) { startedWaiting = millis(); } i.e. update() method

@@ -1,8 +1,5 @@
 #include "SoundButton.h"
 
-#define MAX_DELAY 10000
-#define MIN_DELAY 100
-
 SoundButton::SoundButton(int pin_, const unsigned int *sample_)
 {
     pin = pin_;
@@ -10,6 +7,7 @@ SoundButton::SoundButton(int pin_, const unsigned int *sample_)
     pressed = 0;
     playerIndex = -1; // index -1 implies that no player is set
     keepPressed = 0;
+    active = 0;
 }
 
 SoundButton::~SoundButton()
@@ -25,13 +23,16 @@ void SoundButton::update()
         Play sound if button is pressed
         Keep playing if register button was pushed
     */
-    if (digitalRead(pin))
-        press();
-    else
-        release();
+    if (active)
+    {
+        if (digitalRead(pin))
+            press();
+        else
+            release();
 
-    if (digitalRead(REGISTER_PIN) && pressed)
-        keepPressed = 1;
+        if (digitalRead(REGISTER_PIN) && pressed)
+            keepPressed = 1;
+    }
 
     if ((pressed || keepPressed) && hasPlayer())
     {
@@ -88,4 +89,15 @@ void SoundButton::release()
 int SoundButton::hasPlayer()
 {
     return playerIndex != -1;
+}
+
+void SoundButton::activate()
+{
+    active = 1;
+}
+
+void SoundButton::deactivate()
+{
+    active = 0;
+    release();
 }

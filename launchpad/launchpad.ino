@@ -5,8 +5,9 @@ AudioControlSGTL5000 audioShield;
 
 // Tab manager to manage everything (wow)
 TabMgmt tabMgmt = TabMgmt();
+LCD lcd = LCD();
 
-//lcd for display
+// lcd for display
 LiquidCrystal lcd(LCD_RS, LCD_EN, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 void setup()
@@ -50,17 +51,17 @@ void loop()
 
   Serial.println();
 
-  //lcd display
+  // lcd display
   lcd.print("vol: ");
-    lcd.print(gain * 100);
-    lcd.print("% ");
+  lcd.print(gain * 100);
+  lcd.print("% ");
 
-    // tab
-    lcd.setCursor(0, 1);
-    lcd.print("Tab");
-    lcd.print("#");
-    lcd.print(tabMgmt.getTabNumber());
-    lcd.print(" ");
+  // tab
+  lcd.setCursor(0, 1);
+  lcd.print("Tab");
+  lcd.print("#");
+  lcd.print(tabMgmt.getTabNumber());
+  lcd.print(" ");
 
   delay(120); // required because of tab swapping !!
 }
