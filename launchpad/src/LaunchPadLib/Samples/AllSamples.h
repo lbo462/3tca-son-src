@@ -53,5 +53,17 @@
 #include "AudioSample1_b1_do.h"
 #include "AudioSample11_b1_si.h"
 #include "AudioSample12_b1_do.h"
+#include "AudioSampleCaisseclaire.h"
+#include "AudioSampleGrossecaisse.h"
+#include "AudioSampleCharlestonferme.h"
+#include "AudioSampleCloche.h"
+#include "AudioSampleCharlestonouverte.h"
+#include "AudioSampleCymbales40cm.h"
+#include "AudioSampleCymbales51cm.h"
+#include "AudioSampleCymbales8p.h"
+#include "AudioSampleTomaigu.h"
+#include "AudioSampleTomgrave.h"
+#include "AudioSampleTommedium.h"
+#include "AudioSampleTambourin.h"
 
 #endif

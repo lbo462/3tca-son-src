@@ -87,3 +87,18 @@ const unsigned int *b1[] = {
     AudioSample11_b1_si,
     AudioSample12_b1_do,
 };
+
+const unsigned int *drums[] = {
+    AudioSampleGrossecaisse,
+    AudioSampleCaisseclaire,
+    AudioSampleCharlestonferme,
+    AudioSampleCharlestonouverte,
+    AudioSampleCymbales40cm,
+    AudioSampleCymbales51cm,
+    AudioSampleCymbales8p,
+    AudioSampleTomaigu,
+    AudioSampleTomgrave,
+    AudioSampleTommedium,
+    AudioSampleCloche,
+    AudioSampleTambourin,
+};
