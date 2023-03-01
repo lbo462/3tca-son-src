@@ -24,8 +24,6 @@ const unsigned int *generators[] = {
 };
 
 const unsigned int *instruments[] = {
-    AudioSampleBrass1,
-    AudioSampleBrass2,
     AudioSampleSdtest1,
 };
 
@@ -36,8 +34,6 @@ const unsigned int *soundeffects[] = {
 };
 
 const unsigned int *musics[] = {
-    AudioSampleBrass1,
-    AudioSampleBrass2,
     AudioSampleSdtest1,
 };
 
@@ -45,5 +41,49 @@ const unsigned int *kicks[] = {
     AudioSampleKick,
     AudioSampleKick,
     AudioSampleKick,
+};
 
+const unsigned int *brass[] = {
+    AudioSampleBrassdo4,
+    AudioSampleBrassdore4,
+    AudioSampleBrassre4,
+    AudioSampleBrassremi4,
+    AudioSampleBrassmi4,
+    AudioSampleBrassfa4,
+    AudioSampleBrassfasol4,
+    AudioSampleBrasssol4,
+    AudioSampleBrasssolla4,
+    AudioSampleBrassla4,
+    AudioSampleBrasslasi4,
+    AudioSampleBrasssi4,
+};
+
+const unsigned int *guitar[] = {
+    AudioSampleGuitardo2,
+    AudioSampleGuitardore2,
+    AudioSampleGuitarre2,
+    AudioSampleGuitarremi2,
+    AudioSampleGuitarmi2,
+    AudioSampleGuitarfa2,
+    AudioSampleGuitarfasol2,
+    AudioSampleGuitarsol2,
+    AudioSampleGuitarsolla2,
+    AudioSampleGuitarla2,
+    AudioSampleGuitarlasi2,
+    AudioSampleGuitarsi2,
+};
+
+const unsigned int *b1[] = {
+    AudioSample1_b1_do,
+    AudioSample2_b1_re,
+    AudioSample3_b1_re,
+    AudioSample4_b1_mi,
+    AudioSample5_b1_fa,
+    AudioSample6_b1_fa,
+    AudioSample7_b1_sol,
+    AudioSample8_b1_sol,
+    AudioSample9_b1_la,
+    AudioSample10_b1_la,
+    AudioSample11_b1_si,
+    AudioSample12_b1_do,
 };

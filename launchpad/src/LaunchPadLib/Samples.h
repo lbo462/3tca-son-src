@@ -10,5 +10,8 @@ extern const unsigned int *instruments[];
 extern const unsigned int *soundeffects[];
 extern const unsigned int *musics[];
 extern const unsigned int *kicks[];
+extern const unsigned int *brass[];
+extern const unsigned int *guitar[];
+extern const unsigned int *b1[];
 
 #endif
