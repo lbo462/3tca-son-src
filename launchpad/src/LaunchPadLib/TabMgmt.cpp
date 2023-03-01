@@ -21,10 +21,10 @@ void TabMgmt::configure()
     tabs[0] = new Tab(soundPins, kicks);
 
     // Tab 2
-    tabs[1] = new Tab(soundPins, generators);
+    tabs[1] = new Tab(soundPins, kicks);
 
     // Tab 3
-    tabs[2] = new Tab(soundPins, instruments);
+    tabs[2] = new Tab(soundPins, kicks);
 
     // activate first tab
     currentTabIndex = 0;

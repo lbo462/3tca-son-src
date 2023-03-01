@@ -1,3 +1,4 @@
+#include <LiquidCrystal.h>
 #include "src/LaunchPadLib/LaunchPad.h"
 
 // output and audio shield
@@ -64,7 +65,7 @@ void LCDprint(float gain, int tabNumber)
 
   // Volume
   lcd.print("Vol: ");
-  lcd.print(gain * 100);
+  lcd.print((int)(gain * 100));
   lcd.print("% ");
 
   // Tab number

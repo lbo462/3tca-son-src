@@ -3,7 +3,7 @@
 
 #include "SoundButton.h"
 
-#define NUMBER_OF_SOUND_BUTTONS 3
+#define NUMBER_OF_SOUND_BUTTONS 12
 
 class Tab
 {

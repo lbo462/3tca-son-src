@@ -2,8 +2,8 @@
 #define pins_teensy_h_
 
 // Define pins for tab swapping
-#define NEXT_TAB_PIN 30
-#define PREV_TAB_PIN 29
+#define NEXT_TAB_PIN 40
+#define PREV_TAB_PIN 41
 
 // Pin for frequency modulation
 #define SET_FREQ_PIN 24
@@ -12,10 +12,10 @@
 #define GAIN_PIN 25
 
 // Pin for register button
-#define REGISTER_PIN 32
+#define REGISTER_PIN 27
 
 // Reset button
-#define RESET_PIN 31
+#define RESET_PIN 26
 
 // Pins for LCD display
 #define LCD_RS 12

@@ -2,11 +2,18 @@
 
 // this file contains many sets of samples, each for a Tab
 
-const unsigned int *soundsTest[] = {
-    AudioSampleSdtest1,
-    AudioSampleSineslide,
+const unsigned int *kicks[] = {
     AudioSampleKick,
-
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
+    AudioSampleKick,
 };
 
 const unsigned int *generators[] = {
@@ -21,26 +28,7 @@ const unsigned int *generators[] = {
     AudioSampleSineslide,
     AudioSampleSquare1,
     AudioSampleSquare2,
-};
-
-const unsigned int *instruments[] = {
-    AudioSampleSdtest1,
-};
-
-const unsigned int *soundeffects[] = {
-    AudioSampleGong,
-    AudioSampleKick,
-    AudioSampleMessage,
-};
-
-const unsigned int *musics[] = {
-    AudioSampleSdtest1,
-};
-
-const unsigned int *kicks[] = {
-    AudioSampleKick,
-    AudioSampleKick,
-    AudioSampleKick,
+    AudioSampleSquare2,
 };
 
 const unsigned int *brass[] = {
