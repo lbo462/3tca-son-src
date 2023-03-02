@@ -47,7 +47,9 @@ void loop()
   // Print current tab to console
   Serial.print("#");
   Serial.print(tabMgmt.getTabNumber());
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(tabMgmt.getTabName());
+  Serial.print(") ");
 
   // LCD display
   LCDprint(gain, tabMgmt.getTabNumber(), tabMgmt.getTabName());

@@ -8,8 +8,9 @@
 class Tab
 {
 public:
-    Tab(const int pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
+    Tab(const int pins[NUMBER_OF_SOUND_BUTTONS], char *name_, const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS]);
     ~Tab();
+    char *name;
 
     void update();
 
