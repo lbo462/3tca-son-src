@@ -1,3 +1,4 @@
+#include <LiquidCrystal.h>
 #include "src/LaunchPadLib/LaunchPad.h"
 
 // output and audio shield
@@ -46,31 +47,35 @@ void loop()
   // Print current tab to console
   Serial.print("#");
   Serial.print(tabMgmt.getTabNumber());
-  Serial.print(" ");
+  Serial.print(" (");
+  Serial.print(tabMgmt.getTabName());
+  Serial.print(") ");
 
   // LCD display
-  LCDprint(gain, tabMgmt.getTabNumber());
+  LCDprint(gain, tabMgmt.getTabNumber(), tabMgmt.getTabName());
 
   tabMgmt.update(); // update current frame
 
   Serial.println();
 
-  delay(150); // required because of tab swapping !!
+  delay(100); // required because of Serial print
 }
 
-void LCDprint(float gain, int tabNumber)
+void LCDprint(float gain, int tabNumber, char *tabName)
 {
   lcd.clear();
 
   // Volume
   lcd.print("Vol: ");
-  lcd.print(gain * 100);
+  lcd.print((int)(gain * 100));
   lcd.print("% ");
 
-  // Tab number
+  // Tab number and Name
   lcd.setCursor(0, 1);
   lcd.print("Tab ");
   lcd.print("#");
   lcd.print(tabNumber);
+  lcd.print(" ");
+  lcd.print(tabName);
   lcd.print(" ");
 }

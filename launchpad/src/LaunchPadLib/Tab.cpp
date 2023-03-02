@@ -1,8 +1,9 @@
 #include "Tab.h"
 
-Tab::Tab(const int pins[NUMBER_OF_SOUND_BUTTONS], const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS])
+Tab::Tab(const int pins[NUMBER_OF_SOUND_BUTTONS], char *name_, const unsigned int *samples[NUMBER_OF_SOUND_BUTTONS])
 {
     active = 0; // make inactive by default
+    name = name_;
     /* Configure sound buttons */
     for (int i = 0; i < NUMBER_OF_SOUND_BUTTONS; i++)
         soundButtons[i] = SoundButton((int)pins[i], samples[i]);

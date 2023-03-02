@@ -18,13 +18,28 @@ void TabMgmt::configure()
     /* Define tabs here */
 
     // Tab 1
-    tabs[0] = new Tab(soundPins, kicks);
+    tabs[0] = new Tab(soundPins, "Kicks", kicks);
 
     // Tab 2
-    tabs[1] = new Tab(soundPins, generators);
+    tabs[1] = new Tab(soundPins, "Piano", piano);
 
     // Tab 3
-    tabs[2] = new Tab(soundPins, instruments);
+    tabs[2] = new Tab(soundPins, "Guitare", guitar);
+
+    // Tab 4
+    tabs[3] = new Tab(soundPins, "Bass1", b1);
+
+    // Tab 5
+    tabs[4] = new Tab(soundPins, "Batterie", drums);
+
+    // Tab 6
+    tabs[5] = new Tab(soundPins, "Beep", beep);
+
+    // Tab 7
+    tabs[6] = new Tab(soundPins, "Balec", unclassified);
+
+    // Tab 8
+    tabs[7] = new Tab(soundPins, "Fun", fun);
 
     // activate first tab
     currentTabIndex = 0;
@@ -68,10 +83,18 @@ void TabMgmt::previousTab()
 void TabMgmt::update()
 {
     // Swap tab
-    if (digitalRead(NEXT_TAB_PIN))
+    if (digitalRead(NEXT_TAB_PIN) && (!swapPrevState || millis() - lastSwap > SWAP_DELAY))
+    {
         nextTab();
-    if (digitalRead(PREV_TAB_PIN))
+        lastSwap = millis();
+    }
+
+    if (digitalRead(PREV_TAB_PIN) && (!swapPrevState || millis() - lastSwap > SWAP_DELAY))
+    {
         previousTab();
+        lastSwap = millis();
+    }
+    swapPrevState = digitalRead(NEXT_TAB_PIN) || digitalRead(PREV_TAB_PIN);
 
     // Update every tabs
     for (int i = 0; i < NUMBER_OF_TABS; i++)
@@ -81,4 +104,9 @@ void TabMgmt::update()
 int TabMgmt::getTabNumber()
 {
     return currentTabIndex + 1;
+}
+
+char *TabMgmt::getTabName()
+{
+    return tabs[currentTabIndex]->name;
 }
