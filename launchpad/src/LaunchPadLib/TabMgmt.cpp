@@ -30,25 +30,16 @@ void TabMgmt::configure()
     tabs[3] = new Tab(soundPins, "Bass1", b1);
 
     // Tab 5
-    tabs[4] = new Tab(soundPins, "Bass2", b2);
+    tabs[4] = new Tab(soundPins, "Batterie", drums);
 
     // Tab 6
-    tabs[5] = new Tab(soundPins, "Batterie", drums);
+    tabs[5] = new Tab(soundPins, "Beep", beep);
 
     // Tab 7
-    tabs[6] = new Tab(soundPins, "Cuivres", brass);
+    tabs[6] = new Tab(soundPins, "Balec", unclassified);
 
     // Tab 8
-    tabs[7] = new Tab(soundPins, "Beep", beep);
-
-    // Tab 9
-    tabs[8] = new Tab(soundPins, "Balec", unclassified);
-
-    // Tab 10
-    tabs[9] = new Tab(soundPins, "Backgrounds", backgrounds);
-
-    // Tab 11
-    tabs[10] = new Tab(soundPins, "Fun", fun);
+    tabs[7] = new Tab(soundPins, "Fun", fun);
 
     // activate first tab
     currentTabIndex = 0;

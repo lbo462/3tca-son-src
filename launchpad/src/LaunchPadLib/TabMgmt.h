@@ -4,7 +4,7 @@
 #include "Tab.h"
 #include "Samples.h"
 
-#define NUMBER_OF_TABS 3
+#define NUMBER_OF_TABS 8
 #define SWAP_DELAY 1000
 
 class TabMgmt

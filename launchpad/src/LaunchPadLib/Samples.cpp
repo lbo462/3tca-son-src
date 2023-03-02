@@ -16,21 +16,6 @@ const unsigned int *kicks[] = {
     AudioSampleKick2,
 };
 
-const unsigned int *brass[] = {
-    AudioSampleBrassdo4,
-    AudioSampleBrassdore4,
-    AudioSampleBrassre4,
-    AudioSampleBrassremi4,
-    AudioSampleBrassmi4,
-    AudioSampleBrassfa4,
-    AudioSampleBrassfasol4,
-    AudioSampleBrasssol4,
-    AudioSampleBrasssolla4,
-    AudioSampleBrassla4,
-    AudioSampleBrasslasi4,
-    AudioSampleBrasssi4,
-};
-
 const unsigned int *guitar[] = {
     AudioSampleGuitardo2,
     AudioSampleGuitardore2,
@@ -76,21 +61,6 @@ const unsigned int *b1[] = {
     AudioSample12_b1_do,
 };
 
-const unsigned int *b2[] = {
-    AudioSampleB2_1_do,
-    AudioSampleB2_2_do,
-    AudioSampleB2_3_re,
-    AudioSampleB2_4_re,
-    AudioSampleB2_5_mi,
-    AudioSampleB2_6_fa,
-    AudioSampleB2_7_fa,
-    AudioSampleB2_8_sol,
-    AudioSampleB2_9_sol,
-    AudioSampleB2_10_la,
-    AudioSampleB2_11_la,
-    AudioSampleB2_12_si,
-};
-
 const unsigned int *drums[] = {
     AudioSampleGrossecaisse,
     AudioSampleCaisseclaire,
@@ -123,16 +93,16 @@ const unsigned int *beep[] = {
 
 const unsigned int *fun[] = {
     AudioSampleSncf,
+    AudioSampleMessage,
+    AudioSampleMasse,
+    AudioSampleSncf,
     AudioSampleRoulementstambours,
     AudioSampleMasse,
     AudioSampleProutla,
-};
-
-const unsigned int *background[] = {
-    AudioSampleBackground1,
-    AudioSampleBackground2,
-    AudioSampleBackground3,
-    AudioSampleBackground4,
+    AudioSampleSncf,
+    AudioSampleRoulementstambours,
+    AudioSampleMasse,
+    AudioSampleProutla,
 };
 
 const unsigned int *unclassified[] = {
@@ -145,6 +115,6 @@ const unsigned int *unclassified[] = {
     AudioSampleBanjosynth,
     AudioSampleLead,
     AudioSampleLeadsynth,
-    AudioSampleBlast1,
-    AudioSampleBasssynth,
+    AudioSampleLead,
+    AudioSampleLeadsynth,
 };
