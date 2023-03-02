@@ -4,11 +4,15 @@ Léo BONNAIRE, Léonard PRINCE, Gausse DONGMO
 
 <hr>
 
-## How to
+## Files disposition
 
-1/ Build below electrical circuit
+`doc` folder containing archive files used during the creation process.
 
-2/ Compile and upload `launchpad.ino` to a Teensy 4.1.
+`launchpad` containing every project files.
+
+`src/LaunchPadLib` is the developed library for this specific project, containing every usefull class.
+
+`include_samples.py` and `line_prepending.py` are simple python scripts used for developement.
 
 <hr>
 
@@ -22,18 +26,8 @@ Pins for the audio output are defined in `TabMgmt.h:soundPins`.
 
 ### Samples
 
-Samples are sets of hex values converted from WAV files. Samples are stored inside `Samples`.
+Samples are sets of hex values converted from WAV files (via [wav2sketch](https://github.com/PaulStoffregen/Audio/tree/master/extras/wav2sketch)). Samples are stored inside `Samples`.
 
 Samples sets are defined in `Samples.h`. Their association with tabs are defined in `TabMgmt.cpp:configure`.
 
 <hr>
-
-## Electrical circuit
-
-Current circuit is three buttons linked to digital pins 33, 34 and 35.
-
-Register button is plugged to pin 32.
-
-Next and previous tab are plugged to pins 29 and 30.
-
-// TODO ADD NICE PICTURES
