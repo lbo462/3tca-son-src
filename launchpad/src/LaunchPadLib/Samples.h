@@ -4,7 +4,6 @@
 // TabMgmt should include this file to access a set samples for a tab, each tab has a diffent set of samples
 #include "Samples/AllSamples.h"
 
-extern const unsigned int *soundsTest[];
 extern const unsigned int *kicks[];
 extern const unsigned int *brass[];
 extern const unsigned int *guitar[];
