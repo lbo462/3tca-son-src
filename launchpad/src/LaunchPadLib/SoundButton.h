@@ -4,9 +4,6 @@
 #include "Pins.h"
 #include "PlayerMgmt.h"
 
-#define MAX_DELAY 2000
-#define MIN_DELAY 0
-
 class SoundButton
 {
 public:

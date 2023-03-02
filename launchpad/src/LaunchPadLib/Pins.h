@@ -27,4 +27,8 @@
 
 /* Pins for sound buttons are defined inside `TabMgmt.cpp`:soundPins */
 
+// Min and Max delays for sound repeat
+#define MAX_DELAY 2000
+#define MIN_DELAY 0
+
 #endif

@@ -51,8 +51,15 @@ void loop()
   Serial.print(tabMgmt.getTabName());
   Serial.print(") ");
 
+  // compute delay for LCD printing
+  int analogReadFromPot = analogRead(SET_FREQ_PIN);
+  unsigned int period = map(analogReadFromPot, 0, 1023, MIN_DELAY, MAX_DELAY);
+
+  Serial.print(period);
+  Serial.print(" ");
+
   // LCD display
-  LCDprint(gain, tabMgmt.getTabNumber(), tabMgmt.getTabName());
+  LCDprint(gain, tabMgmt.getTabNumber(), tabMgmt.getTabName(), period);
 
   tabMgmt.update(); // update current frame
 
@@ -61,14 +68,15 @@ void loop()
   delay(100); // required because of Serial print
 }
 
-void LCDprint(float gain, int tabNumber, char *tabName)
+void LCDprint(float gain, int tabNumber, char *tabName, int period)
 {
   lcd.clear();
 
   // Volume
   lcd.print("Vol: ");
   lcd.print((int)(gain * 100));
-  lcd.print("% ");
+  lcd.print("% f: ");
+  lcd.print(period);
 
   // Tab number and Name
   lcd.setCursor(0, 1);
