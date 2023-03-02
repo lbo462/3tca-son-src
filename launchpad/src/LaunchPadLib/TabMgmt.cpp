@@ -19,12 +19,15 @@ void TabMgmt::configure()
 
     // Tab 1
     tabs[0] = new Tab(soundPins, kicks);
+    tabNames[0] = stringify(kicks);
 
     // Tab 2
     tabs[1] = new Tab(soundPins, kicks);
+    tabNames[1] = stringify(kicks);
 
     // Tab 3
     tabs[2] = new Tab(soundPins, kicks);
+    tabNames[2] = stringify(kicks);
 
     // activate first tab
     currentTabIndex = 0;
@@ -81,4 +84,9 @@ void TabMgmt::update()
 int TabMgmt::getTabNumber()
 {
     return currentTabIndex + 1;
+}
+
+char *TabMgmt::getTabName()
+{
+    return tabNames[currentTabIndex];
 }

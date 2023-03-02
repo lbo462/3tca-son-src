@@ -50,7 +50,7 @@ void loop()
   Serial.print(" ");
 
   // LCD display
-  LCDprint(gain, tabMgmt.getTabNumber());
+  LCDprint(gain, tabMgmt.getTabNumber(), tabMgmt.getTabName());
 
   tabMgmt.update(); // update current frame
 
@@ -59,7 +59,7 @@ void loop()
   delay(150); // required because of tab swapping !!
 }
 
-void LCDprint(float gain, int tabNumber)
+void LCDprint(float gain, int tabNumber, char *tabName)
 {
   lcd.clear();
 
@@ -68,10 +68,12 @@ void LCDprint(float gain, int tabNumber)
   lcd.print((int)(gain * 100));
   lcd.print("% ");
 
-  // Tab number
+  // Tab number and Name
   lcd.setCursor(0, 1);
   lcd.print("Tab ");
   lcd.print("#");
   lcd.print(tabNumber);
+  lcd.print(" ");
+  lcd.print(tabName);
   lcd.print(" ");
 }
