@@ -106,6 +106,7 @@ const unsigned int *fun[] = {
 };
 
 const unsigned int *unclassified[] = {
+    AudioSampleKick,
     AudioSampleDrill1,
     AudioSampleDrilll2,
     AudioSampleDrill3,
