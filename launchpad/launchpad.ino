@@ -56,7 +56,7 @@ void loop()
 
   Serial.println();
 
-  delay(150); // required because of tab swapping !!
+  delay(100); // required because of Serial print
 }
 
 void LCDprint(float gain, int tabNumber, char *tabName)

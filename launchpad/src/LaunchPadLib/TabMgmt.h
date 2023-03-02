@@ -5,9 +5,14 @@
 #include "Samples.h"
 
 #define NUMBER_OF_TABS 3
+<<<<<<< HEAD
 #define stringify(var) #var // used to get tabNames
+    == == ==
+    =
+#define SWAP_DELAY 1000
+        >>>>>>> 740dbbe (add missing includes)
 
-class TabMgmt
+    class TabMgmt
 {
 public:
     TabMgmt();
@@ -28,6 +33,8 @@ private:
     int currentTabIndex;
     Tab *tabs[NUMBER_OF_TABS];
     char *tabNames[NUMBER_OF_TABS];
+    int swapPrevState = 0;      // State of tab swapping button at previous frame
+    unsigned long lastSwap = 0; // Time of which a tabs were swapped
 
     const int soundPins[NUMBER_OF_SOUND_BUTTONS] = {
         28,

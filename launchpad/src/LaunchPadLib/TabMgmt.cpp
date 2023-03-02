@@ -71,10 +71,18 @@ void TabMgmt::previousTab()
 void TabMgmt::update()
 {
     // Swap tab
-    if (digitalRead(NEXT_TAB_PIN))
+    if (digitalRead(NEXT_TAB_PIN) && (!swapPrevState || millis() - lastSwap > SWAP_DELAY))
+    {
         nextTab();
-    if (digitalRead(PREV_TAB_PIN))
+        lastSwap = millis();
+    }
+
+    if (digitalRead(PREV_TAB_PIN) && (!swapPrevState || millis() - lastSwap > SWAP_DELAY))
+    {
         previousTab();
+        lastSwap = millis();
+    }
+    swapPrevState = digitalRead(NEXT_TAB_PIN) || digitalRead(PREV_TAB_PIN);
 
     // Update every tabs
     for (int i = 0; i < NUMBER_OF_TABS; i++)
