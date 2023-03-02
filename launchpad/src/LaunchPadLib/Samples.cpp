@@ -4,16 +4,16 @@
 
 const unsigned int *kicks[] = {
     AudioSampleKick,
+    AudioSampleKick2,
     AudioSampleKick,
     AudioSampleKick,
     AudioSampleKick,
+    AudioSampleKick2,
     AudioSampleKick,
     AudioSampleKick,
+    AudioSampleKick2,
     AudioSampleKick,
-    AudioSampleKick,
-    AudioSampleKick,
-    AudioSampleKick,
-    AudioSampleKick,
+    AudioSampleKick2,
 };
 
 const unsigned int *generators[] = {
@@ -89,4 +89,31 @@ const unsigned int *drums[] = {
     AudioSampleTommedium,
     AudioSampleCloche,
     AudioSampleTambourin,
+};
+
+const unsigned int *fun[] = {
+    AudioSampleSncf,
+    AudioSampleRoulementstambours,
+    AudioSampleMasse,
+};
+
+const unsigned int *background[] = {
+    AudioSampleBackground1,
+    AudioSampleBackground2,
+    AudioSampleBackground3,
+    AudioSampleBackground4,
+};
+
+const unsigned int *unclassified[] = {
+    AudioSampleDrill1,
+    AudioSampleDrilll2,
+    AudioSampleDrill3,
+    AudioSampleFlute,
+    AudioSampleKalimba,
+    AudioSampleBanjo,
+    AudioSampleBanjosynth,
+    AudioSampleLead,
+    AudioSampleLeadsynth,
+    AudioSampleBlast1,
+    AudioSampleBasssynth,
 };

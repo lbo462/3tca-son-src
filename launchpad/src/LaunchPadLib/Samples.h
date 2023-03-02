@@ -14,5 +14,8 @@ extern const unsigned int *brass[];
 extern const unsigned int *guitar[];
 extern const unsigned int *b1[];
 extern const unsigned int *drums[];
+extern const unsigned int *fun[];
+extern const unsigned int *background[];
+extern const unsigned int *unclassified[];
 
 #endif
