@@ -14,6 +14,7 @@ const unsigned int *kicks[] = {
     AudioSampleKick2,
     AudioSampleKick,
     AudioSampleKick2,
+    AudioSampleKick,
 };
 
 const unsigned int *guitar[] = {
@@ -92,7 +93,7 @@ const unsigned int *beep[] = {
 };
 
 const unsigned int *fun[] = {
-    AudioSampleSncf,
+    AudioSampleRick,
     AudioSampleMessage,
     AudioSampleMasse,
     AudioSampleSncf,

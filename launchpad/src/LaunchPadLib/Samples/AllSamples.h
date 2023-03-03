@@ -71,6 +71,7 @@
 #include "AudioSamplePiano_8_sol.h"
 #include "AudioSamplePiano_9_sol.h"
 #include "AudioSampleProutla.h"
+#include "AudioSampleRick.h"
 #include "AudioSampleRoulementstambours.h"
 #include "AudioSampleSncf.h"
 #include "AudioSampleTambourin.h"
